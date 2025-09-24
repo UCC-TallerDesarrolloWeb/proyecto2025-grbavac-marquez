@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pablo Marquez Capilla" />
+    <meta
+      name="description"
+      content="Rutas Argentinas: buscá pasajes y planes para viajar por Argentina. Paquetes, hoteles y resorts."
+    />
+    <meta
+      name="keywords"
+      content="viajes, argentina, pasajes, hoteles, resorts, turismo"
+    />
+    <title>rutas argentinas — buscador y planes</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <body>
+    <div id="contenedor">
+      <header id="cabecera">
+        <div class="cabecera-inner">
+          <img id="logo" src="Images/Logo-Rutas-Argentinas.jpeg.jpg"logotipo de
+          rutas argentinas" />
+          <h1 id="titulo">rutas argentinas</h1>
+          <nav id="nav-principal" aria-label="navegación principal">
+            <ul id="menu">
+              <li><a href="#buscador" title="ir al buscador">buscar</a></li>
+              <li><a href="#planes" title="ir a planes">planes</a></li>
+              <li><a href="#pie" title="ir al pie">contacto</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main id="contenido">
+        <section id="hero">
+          <div class="hero-inner">
+            <img
+              id="hero-img"
+              src="Images/Perito_Moreno_Glacier.jpg"
+              alt="paisaje del glaciar perito moreno en santa cruz, argentina"
+            />
+
+            <div id="buscador">
+              <form id="form-busqueda" action="#" method="get">
+                <div class="fila">
+                  <div class="campo">
+                    <label for="origen">origen</label>
+                    <input
+                      type="text"
+                      id="origen"
+                      name="origen"
+                      placeholder="ciudad de origen"
+                      size="20"
+                      maxlength="30"
+                      required="required"
+                    />
+                  </div>
+                  <div class="campo">
+                    <label for="destino">destino</label>
+                    <input
+                      type="text"
+                      id="destino"
+                      name="destino"
+                      placeholder="ciudad de destino"
+                      size="20"
+                      maxlength="30"
+                      required="required"
+                    />
+                  </div>
+                </div>
+
+                <div class="fila">
+                  <div class="campo">
+                    <label for="fecha-ida">rango fechas</label>
+                    <input
+                      type="date"
+                      id="fecha-ida"
+                      name="fecha_ida"
+                      size="10"
+                    />
+                    <input
+                      type="date"
+                      id="fecha-vuelta"
+                      name="fecha_vuelta"
+                      size="10"
+                    />
+                  </div>
+                  <div class="campo">
+                    <label for="pasajeros">pasajeros</label>
+                    <input
+                      type="number"
+                      id="pasajeros"
+                      name="pasajeros"
+                      placeholder="0"
+                      size="4"
+                      min="0"
+                      max="10"
+                      step="1"
+                    />
+                  </div>
+                  <div class="campo">
+                    <button type="submit" id="btn-buscar">buscar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="planes">
+          <div class="planes-inner">
+            <h2>planes</h2>
+            <p>search flights & places hire to our most popular destinations</p>
+
+            <div class="lista-planes">
+              <article class="card" id="card-tucuman">
+                <img
+                  src="Images/Tucuman_Foto_home.webp"
+                  alt="tucumán argentina"
+                />
+                <h3>tucumán, argentina</h3>
+                <p>pasajes · hoteles · resorts</p>
+              </article>
+
+              <article class="card" id="card-buenos-aires">
+                <img
+                  src="Images/Buenos_Aires_Foto_home.jpeg.jpg"
+                  alt="buenos aires argentina"
+                />
+                <h3>buenos aires, argentina</h3>
+                <p>pasajes · hoteles · resorts</p>
+              </article>
+
+              <article class="card" id="card-salta">
+                <img
+                  src="Images/Salta_Foto_home.jpeg.jpg"
+                  alt="salta argentina"
+                />
+                <h3>salta, argentina</h3>
+                <p>pasajes · hoteles · resorts</p>
+              </article>
+
+              <article class="card" id="card-cordoba">
+                <img
+                  src="Images/Cordoba_Foto_home.jpg"
+                  alt="córdoba argentina"
+                />
+                <h3>córdoba, argentina</h3>
+                <p>pasajes · hoteles · resorts</p>
+              </article>
+
+              <article class="card" id="card-misiones">
+                <img
+                  src="Images/Misiones_Foto_home.jpg"
+                  alt="misiones argentina"
+                />
+                <h3>misiones, argentina</h3>
+                <p>pasajes · hoteles · resorts</p>
+              </article>
+
+              <article class="card" id="card-ushuaia">
+                <img
+                  src="Images/Ushuaia_Foto_home.jpeg.jpg"
+                  alt="ushuaia argentina"
+                />
+                <h3>ushuaia, argentina</h3>
+                <p>pasajes · hoteles · resorts</p>
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer id="pie">
+        <div class="pie-inner">
+          <p>&copy; 2025 rutas argentinas. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
