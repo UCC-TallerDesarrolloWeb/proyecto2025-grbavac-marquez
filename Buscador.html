@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pablo Marquez Capilla" />
+    <meta
+      name="description"
+      content="Buscador de destinos y actividades de Rutas Argentinas con filtros por fecha, temas y ubicación."
+    />
+    <meta
+      name="keywords"
+      content="buscador, destinos, actividades, argentina, filtros"
+    />
+    <title>rutas argentinas — buscador de destinos</title>
+    <link rel="stylesheet" href="Buscador.css" type="text/css" />
+  </head>
+  <body>
+    <div id="contenedor">
+      <header id="cabecera" role="banner">
+        <div class="cabecera-inner">
+          <a href="index.html" class="logo" aria-label="ir al inicio">
+            <img
+              src="Images/Logo-Rutas-Argentinas.jpeg"
+              alt="logotipo de rutas argentinas"
+              id="logo"
+            />
+          </a>
+          <h1 id="titulo-pagina">destinos disponibles</h1>
+          <nav id="nav-principal" aria-label="navegación principal">
+            <ul class="menu">
+              <li><a href="index.html" title="inicio">Inicio</a></li>
+              <li><a href="Buscador.html" title="buscador">Buscador</a></li>
+              <li>
+                <a href="Registrarse.html" title="registrarse"
+                  >Registrarse / Iniciar Sesion</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main id="contenido">
+        <div class="layout">
+          <aside id="filtros" aria-label="filtros" class="col-izq">
+            <form id="form-filtros" action="#" method="get">
+              <section
+                class="bloque"
+                id="bloque-disponibilidad"
+                aria-labelledby="tit-disponibilidad"
+              >
+                <h2 class="bloque-titulo" id="tit-disponibilidad">
+                  Disponibilidad
+                </h2>
+                <fieldset class="grupo">
+                  <legend class="visually-hidden">Rango de Fechas</legend>
+                  <div class="campo">
+                    <label for="fecha-desde">Desde</label>
+                    <input
+                      type="date"
+                      id="fecha-desde"
+                      name="desde"
+                      size="10"
+                    />
+                  </div>
+                  <div class="campo">
+                    <label for="fecha-hasta">Hasta</label>
+                    <input
+                      type="date"
+                      id="fecha-hasta"
+                      name="hasta"
+                      size="10"
+                    />
+                  </div>
+                  <div class="acciones">
+                    <button type="submit" id="btn-disponibilidad">
+                      Ver Disponibilidad
+                    </button>
+                  </div>
+                </fieldset>
+              </section>
+
+              <section
+                class="bloque"
+                id="bloque-temas"
+                aria-labelledby="tit-temas"
+              >
+                <h2 class="bloque-titulo" id="tit-temas">Temas</h2>
+                <fieldset class="grupo">
+                  <legend class="visually-hidden">Temáticas</legend>
+                  <ul class="lista-check" role="list">
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-acuaticas"
+                        name="temas"
+                        value="acuaticas"
+                      />
+                      <label for="c-acuaticas">Actividades</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-adrenalina"
+                        name="temas"
+                        value="adrenalina"
+                      />
+                      <label for="c-adrenalina">Adrenalina</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-naturaleza"
+                        name="temas"
+                        value="naturaleza"
+                      />
+                      <label for="c-naturaleza">Naturaleza</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-tesoros"
+                        name="temas"
+                        value="tesoros"
+                      />
+                      <label for="c-tesoros">Tesoros Escondidos</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-arte"
+                        name="temas"
+                        value="arte"
+                      />
+                      <label for="c-arte">Arte callejero y Grafitis</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-gastro"
+                        name="temas"
+                        value="gastronomia"
+                      />
+                      <label for="c-gastro">Gastronomía</label>
+                    </li>
+                  </ul>
+                </fieldset>
+                <p class="enlace-mas">
+                  <a href="#" title="mostrar más destinos"
+                    >show more destinations</a
+                  >
+                </p>
+              </section>
+
+              <section
+                class="bloque"
+                id="bloque-destino"
+                aria-labelledby="tit-destino"
+              >
+                <h2 class="bloque-titulo" id="tit-destino">Destino</h2>
+                <fieldset class="grupo">
+                  <legend class="visually-hidden">zonas</legend>
+                  <div class="campo">
+                    <label for="buscar-zona">buscar zona</label>
+                    <input
+                      type="text"
+                      id="buscar-zona"
+                      name="buscar_zona"
+                      placeholder="córdoba, buenos aires..."
+                      size="22"
+                      maxlength="40"
+                    />
+                  </div>
+                  <ul class="lista-check" role="list">
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="d-centro"
+                        name="zona"
+                        value="centro"
+                      />
+                      <label for="d-centro">zona centro</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="d-patagonia"
+                        name="zona"
+                        value="patagonia"
+                      />
+                      <label for="d-patagonia">patagonia</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="d-litoral"
+                        name="zona"
+                        value="litoral"
+                      />
+                      <label for="d-litoral">litoral</label>
+                    </li>
+                  </ul>
+                </fieldset>
+              </section>
+
+              <section
+                class="bloque"
+                id="bloque-estimador"
+                aria-labelledby="tit-estimador"
+              >
+                <h2 class="bloque-titulo" id="tit-estimador">
+                  estimador rápido
+                </h2>
+                <fieldset class="grupo">
+                  <legend class="visually-hidden">cálculo estimado</legend>
+                  <div class="campo">
+                    <label for="est-personas">personas</label>
+                    <input
+                      type="number"
+                      id="est-personas"
+                      name="personas"
+                      min="1"
+                      max="10"
+                      step="1"
+                      value="2"
+                      size="4"
+                    />
+                  </div>
+                  <div class="campo">
+                    <label for="est-horas">horas</label>
+                    <input
+                      type="number"
+                      id="est-horas"
+                      name="horas"
+                      min="1"
+                      max="12"
+                      step="1"
+                      value="2"
+                      size="4"
+                    />
+                  </div>
+                  <div class="campo">
+                    <label for="est-tarifa">tarifa usd</label>
+                    <input
+                      type="number"
+                      id="est-tarifa"
+                      name="tarifa"
+                      min="0"
+                      step="0.01"
+                      value="35.00"
+                      size="6"
+                    />
+                  </div>
+                  <div class="acciones">
+                    <button type="button" id="btn-calcular">calcular</button>
+                  </div>
+                </fieldset>
+              </section>
+            </form>
+          </aside>
+
+          <section
+            id="resultados"
+            class="col-der"
+            aria-labelledby="tit-resultados"
+          >
+            <header class="resultados-encabezado">
+              <p id="cantidad">Ciudades Encontradas</p>
+              <div class="orden">
+                <label for="ordenar">Elegir por:</label>
+                <select id="ordenar" name="ordenar">
+                  <option value="popularity" selected="selected">
+                    Popularidad
+                  </option>
+                  <option value="price-asc">
+                    Precio: Mas Barato a Mas Caro
+                  </option>
+                  <option value="price-desc">
+                    Precio: Mas Caro a Mas Barato
+                  </option>
+                </select>
+              </div>
+            </header>
+
+            <ul class="listado" role="list">
+              <li>
+                <article class="card" id="card-tucuman">
+                  <div class="card-media">
+                    <img
+                      src="Images/Tucuman_Foto_Buscador.jpg"
+                      alt="vista panorámica de tucumán"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <p class="badge">Actividades</p>
+                    <h3 class="card-titulo">Tucuman</h3>
+                    <ul class="card-meta" role="list">
+                      <li>2 hours</li>
+                      <li>Transporte</li>
+                      <li>Planes Familiares</li>
+                    </ul>
+                  </div>
+                  <aside class="card-precio" aria-label="precio">
+                    <p class="monto">$35.00</p>
+                    <small>Por Persona</small>
+                  </aside>
+                </article>
+              </li>
+
+              <li>
+                <article class="card" id="card-buenos-aires">
+                  <div class="card-media">
+                    <img
+                      src="Images/Buenos_Aires_Foto_Buscador.jpeg"
+                      alt="obelisco de buenos aires"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <p class="badge">Actividades</p>
+                    <h3 class="card-titulo">Buenos Aires</h3>
+                    <ul class="card-meta" role="list">
+                      <li>4 hours</li>
+                      <li>Transporte</li>
+                      <li>Conciertos</li>
+                    </ul>
+                  </div>
+                  <aside class="card-precio" aria-label="precio">
+                    <p class="monto">$55.00</p>
+                    <small>Por Persona</small>
+                  </aside>
+                </article>
+              </li>
+
+              <li>
+                <article class="card" id="card-cordoba">
+                  <div class="card-media">
+                    <img
+                      src="Images/Cordoba_Foto_Buscador.jpg"
+                      alt="cartel córdoba argentina"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <p class="badge">Actividades</p>
+                    <h3 class="card-titulo">Cordoba</h3>
+                    <ul class="card-meta" role="list">
+                      <li>6 hours</li>
+                      <li>Transporte</li>
+                      <li>Conciertos</li>
+                    </ul>
+                  </div>
+                  <aside class="card-precio" aria-label="precio">
+                    <p class="monto">$50.00</p>
+                    <small>Por Persona</small>
+                  </aside>
+                </article>
+              </li>
+
+              <li>
+                <article class="card" id="card-salta">
+                  <div class="card-media">
+                    <img
+                      src="Images/Salta_Foto_Buscador.webp"
+                      alt=" paisaje de salta"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <p class="badge">Actividades</p>
+                    <h3 class="card-titulo">Salta</h3>
+                    <ul class="card-meta" role="list">
+                      <li>12 hours</li>
+                      <li>Transporte</li>
+                      <li>Salinas</li>
+                    </ul>
+                  </div>
+                  <aside class="card-precio" aria-label="precio">
+                    <p class="monto">$44.00</p>
+                    <small>Por Persona</small>
+                  </aside>
+                </article>
+              </li>
+
+              <li>
+                <article class="card" id="card-ushuaia">
+                  <div class="card-media">
+                    <img
+                      src="Images/Ushuaia_Foto_Buscador.jpg"
+                      alt="ushuaia de noche"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <p class="badge">Actividades</p>
+                    <h3 class="card-titulo">Ushuaia</h3>
+                    <ul class="card-meta" role="list">
+                      <li>15 hours</li>
+                      <li>Transporte</li>
+                      <li>Ski/Snowboard</li>
+                    </ul>
+                  </div>
+                  <aside class="card-precio" aria-label="precio">
+                    <p class="monto">$55.00</p>
+                    <small>Por Persona</small>
+                  </aside>
+                </article>
+              </li>
+
+              <li>
+                <article class="card" id="card-misiones">
+                  <div class="card-media">
+                    <img
+                      src="Images/Misiones_Foto_Buscador.webp"
+                      alt="paisaje del iguazú"
+                    />
+                  </div>
+                  <div class="card-body">
+                    <p class="badge">Actividades</p>
+                    <h3 class="card-titulo">misiones</h3>
+                    <ul class="card-meta" role="list">
+                      <li>14 hours</li>
+                      <li>Transporte</li>
+                      <li>Kayak y Mas</li>
+                    </ul>
+                  </div>
+                  <aside class="card-precio" aria-label="precio">
+                    <p class="monto">$30.00</p>
+                    <small>Por Persona</small>
+                  </aside>
+                </article>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </main>
+
+      <footer id="pie" role="contentinfo">
+        <div class="pie-inner">
+          <p>&copy; 2025 rutas argentinas. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
