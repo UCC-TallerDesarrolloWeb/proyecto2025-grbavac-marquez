@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pablo Marquez Capilla" />
+    <meta
+      name="description"
+      content="Actividades y eventos en ciudades de Argentina: festivales, conciertos, enoturismo y deportes de nieve."
+    />
+    <meta
+      name="keywords"
+      content="actividades, conciertos, festivales, cosquin rock, lollapalooza, bad bunny, ruta del vino, ski, snowboard"
+    />
+    <title>Rutas Argentinas — Actividades y Eventos</title>
+    <link rel="stylesheet" href="Actividades.css" type="text/css" />
+  </head>
+  <body>
+    <div id="contenedor">
+      <header id="cabecera" role="banner">
+        <div class="cabecera-inner">
+          <a href="index.html" class="brand" aria-label="ir al inicio">
+            <img
+              src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg"
+              alt="logo rutas argentinas"
+              id="logo"
+            />
+          </a>
+          <h1 id="titulo">actividades disponibles</h1>
+          <nav id="nav-principal" aria-label="navegación principal">
+            <ul class="menu">
+              <li><a href="index.html" title="inicio">Inicio</a></li>
+              <li><a href="buscador.html" title="buscador">Buscador</a></li>
+              <li>
+                <a href="Actividades.html" title="ir a planes">Actividades</a>
+              </li>
+
+              <li><a href="Contacto.html" title="contacto">Contacto</a></li>
+              <li>
+                <a href="Registrarse.html" title="registro"
+                  >Registrarse / Iniciar Sesion</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main id="contenido">
+        <section id="filtros" aria-labelledby="tit-filtros">
+          <h2 id="tit-filtros" class="visually-hidden">Filtros</h2>
+          <form id="form-filtros" action="#" method="get">
+            <div class="campo">
+              <label for="q">buscar</label>
+              <input
+                type="search"
+                id="q"
+                name="q"
+                placeholder="buscá actividad o ciudad"
+                size="26"
+                maxlength="40"
+              />
+            </div>
+            <div class="campo">
+              <label for="categoria">Categoría</label>
+              <select id="categoria" name="categoria">
+                <option value="todas" selected="selected">Todas</option>
+                <option value="musica">Música</option>
+                <option value="nieve">Nieve</option>
+              </select>
+            </div>
+            <div class="acciones">
+              <button type="submit" id="btn-filtrar">filtrar</button>
+              <button type="reset" id="btn-limpiar">limpiar</button>
+            </div>
+          </form>
+        </section>
+
+        <section id="actividades" aria-labelledby="tit-actividades">
+          <h2 id="tit-actividades" class="visually-hidden">
+            Listado de actividades
+          </h2>
+          <ul class="cards" role="list">
+            <li>
+              <article class="card" id="card-cosquin">
+                <div class="card-media">
+                  <img
+                    src="Imagen/Cosquin_Rock_Actividades.png"
+                    alt="afiche del festival cosquín rock"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-overlay" aria-hidden="true">
+                  <h3 class="card-titulo">Cosquín Rock</h3>
+                  <p class="card-sub">Córdoba · Febrero</p>
+                  <ul class="card-meta" role="list">
+                    <li>Música · Festival</li>
+                    <li>2 días</li>
+                  </ul>
+                  <a
+                    class="btn"
+                    href="https://cosquinrock.net/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="ir al sitio oficial"
+                    >Ir al sitio</a
+                  >
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="card" id="card-lolla">
+                <div class="card-media">
+                  <img
+                    src="Imagen/Lollapalooza_Actividades.jpg"
+                    alt="afiche lollapalooza buenos aires"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-overlay" aria-hidden="true">
+                  <h3 class="card-titulo">Lollapalooza</h3>
+                  <p class="card-sub">Buenos Aires · Marzo</p>
+                  <ul class="card-meta" role="list">
+                    <li>Música · Festival</li>
+                    <li>3 días</li>
+                  </ul>
+                  <a
+                    class="btn"
+                    href="https://www.allaccess.com.ar/event/lollapalooza-2026-venta-general"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="ir al sitio oficial"
+                    >Ir al sitio</a
+                  >
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="card" id="card-badbunny">
+                <div class="card-media">
+                  <img
+                    src="Imagen/Bad_Bunny_Actividades.jpg_large"
+                    alt="concierto de bad bunny en buenos aires"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-overlay" aria-hidden="true">
+                  <h3 class="card-titulo">Bad Bunny</h3>
+                  <p class="card-sub">Buenos aires · Estadio</p>
+                  <ul class="card-meta" role="list">
+                    <li>Música · Concierto</li>
+                    <li>1 noche</li>
+                  </ul>
+                  <a
+                    class="btn"
+                    href="https://www.allaccess.com.ar/event/bad-bunny"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="ir al sitio oficial"
+                    >Ir al sitio</a
+                  >
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="card" id="card-ruta-vino">
+                <div class="card-media">
+                  <img
+                    src="Imagen/Ruta_Del_Vino_Actividades.jpg"
+                    alt="viñedos en mendoza"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-overlay" aria-hidden="true">
+                  <h3 class="card-titulo">Ruta del vino</h3>
+                  <p class="card-sub">Mendoza · Todo el año</p>
+                  <ul class="card-meta" role="list">
+                    <li>Turismo · Gastronomia</li>
+                  </ul>
+                  <a
+                    class="btn"
+                    href="https://www.wanderwine.tur.ar/tour/ruta-del-vino-mendoza/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="ir al sitio oficial"
+                    >Ir al sitio</a
+                  >
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="card" id="card-nieve">
+                <div class="card-media">
+                  <img
+                    src="Imagen/Clases_Snow_Actividades.jpg"
+                    alt="snowboard en centro de ski"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-overlay" aria-hidden="true">
+                  <h3 class="card-titulo">Snowboard / Ski</h3>
+                  <p class="card-sub">Temporada de invierno</p>
+                  <ul class="card-meta" role="list">
+                    <li>Nieve · Alquiler</li>
+                  </ul>
+                  <a
+                    class="btn"
+                    href="https://verticalskisnowboard.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="ir al sitio oficial"
+                    >Ir al sitio</a
+                  >
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="card" id="card-egresados">
+                <div class="card-media">
+                  <img
+                    src="Imagen/Bariloche_Actividades.jpg"
+                    alt="snowboard en centro de ski"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-overlay" aria-hidden="true">
+                  <h3 class="card-titulo">Viaje de Egresados</h3>
+                  <p class="card-sub">Bariloche · Temporada de invierno</p>
+                  <ul class="card-meta" role="list">
+                    <li>Nieve · Boliches y Mas</li>
+                  </ul>
+                  <a
+                    class="btn"
+                    href="https://www.travelrock.com.ar/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="ir al sitio oficial"
+                    >Ir al sitio</a
+                  >
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="card" id="card-Kendrick Lamar">
+                <div class="card-media">
+                  <img
+                    src="Imagen/Kendrick_Lamar_Actividades.png"
+                    alt="snowboard en centro de ski"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-overlay" aria-hidden="true">
+                  <h3 class="card-titulo">Kendrick Lamar</h3>
+                  <p class="card-sub">Buenos aires · Estadio</p>
+                  <ul class="card-meta" role="list">
+                    <li>Música · Concierto</li>
+                    <li>1 noche</li>
+                  </ul>
+                  <a
+                    class="btn"
+                    href="https://www.allaccess.com.ar/event/kendrick-lamar-venta-general"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="ir al sitio oficial"
+                    >Ir al sitio</a
+                  >
+                </div>
+              </article>
+            </li>
+
+            <li>
+              <article class="card" id="card-Duki">
+                <div class="card-media">
+                  <img
+                    src="Imagen/Duki_Actividades .webp"
+                    alt="snowboard en centro de ski"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="card-overlay" aria-hidden="true">
+                  <h3 class="card-titulo">Duki</h3>
+                  <p class="card-sub">Buenos aires · Estadio</p>
+                  <ul class="card-meta" role="list">
+                    <li>Música · Concierto</li>
+                    <li>1 noche</li>
+                  </ul>
+                  <a
+                    class="btn"
+                    href="https://www.movistararena.com.ar/show/e69127ec-55d8-4a59-b6c5-a7fdaa536615"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="ir al sitio oficial"
+                    >Ir al sitio</a
+                  >
+                </div>
+              </article>
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <footer id="pie" role="contentinfo">
+        <div class="pie-inner">
+          <p>&copy; 2025 rutas argentinas. todos los derechos reservados.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

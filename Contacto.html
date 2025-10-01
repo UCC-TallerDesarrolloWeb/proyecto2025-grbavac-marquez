@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pablo Marquez Capilla" />
+    <meta
+      name="description"
+      content="Canales de consulta: teléfonos por país y horarios, chat, centro de ayuda y formulario de contacto."
+    />
+    <meta
+      name="keywords"
+      content="contacto, atención al cliente, teléfonos, chat, formulario, ayuda"
+    />
+    <title>canales de consulta — atención al cliente</title>
+    <link rel="stylesheet" href="Contacto.css" type="text/css" />
+  </head>
+  <body>
+    <div id="contenedor">
+      <header id="cabecera" role="banner">
+        <div class="cabecera-inner">
+          <a href="index.html" class="brand" aria-label="ir al inicio">
+            <img
+              src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg"
+              alt="Logo de Rutas Argentinas"
+              class="brand-logo"
+              id="brand-logo"
+            />
+          </a>
+          <h1 id="titulo">canales de Consulta</h1>
+          <nav id="nav" aria-label="navegación principal">
+            <ul class="menu">
+              <li><a href="index.html" title="inicio">Inicio</a></li>
+              <li><a href="Buscador.html" title="buscador">Buscador</a></li>
+              <li>
+                <a href="Actividades.html" title="buscador">Actividades</a>
+              </li>
+              <li>
+                <a href="Registrarse.html" title="registro"
+                  >Registrarse / Iniciar Sesion</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main id="contenido">
+        <section id="intro" class="section" aria-labelledby="tit-intro">
+          <div class="intro-inner">
+            <h2 id="tit-intro">Estamos para ayudarte</h2>
+            <p>
+              Elegí el canal que prefieras para tu consulta: ChatBot (Carlitos),
+              Formulario o Teléfonos por país
+            </p>
+          </div>
+        </section>
+
+        <div class="layout">
+          <section id="canales" class="col-der" aria-labelledby="tit-canales">
+            <h2 id="tit-canales" class="visually-hidden">Canales</h2>
+
+            <article class="card canal" id="canal-chat">
+              <div class="card-media">
+                <img
+                  src="Imagen/ChatBot_Contacto.jpg"
+                  alt="ilustración de chatbot"
+                />
+              </div>
+              <div class="card-body">
+                <h3 class="card-titulo">Chat</h3>
+                <p>
+                  Iniciá una conversación con nuestro asistente virtual para
+                  resolver dudas frecuentes.
+                </p>
+                <div class="acciones">
+                  <button type="button" id="btn-abrir-chat" title="abrir chat">
+                    Abrir chat
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <article class="card canal" id="canal-formulario">
+              <div class="card-media">
+                <img
+                  src="Imagen/Formulario_Contacto.png"
+                  alt="icono formulario"
+                />
+              </div>
+              <div class="card-body">
+                <h3 class="card-titulo">Formulario de contacto</h3>
+                <p>Completá el formulario y te responderemos por correo.</p>
+
+                <form
+                  id="form-contacto"
+                  action="#"
+                  method="post"
+                  autocomplete="on"
+                  novalidate="novalidate"
+                >
+                  <div class="campo">
+                    <label for="contacto-email">tu email</label>
+                    <input
+                      type="email"
+                      id="contacto-email"
+                      name="email"
+                      placeholder="tu@mail.com"
+                      size="28"
+                      maxlength="40"
+                      required="required"
+                    />
+                  </div>
+
+                  <div class="campo">
+                    <label for="contacto-tema">Tema</label>
+                    <select id="contacto-tema" name="tema" required="required">
+                      <option value="" selected="selected">
+                        Elegí una opción
+                      </option>
+                      <option value="reserva">Mi reserva</option>
+                      <option value="equipaje">Equipaje</option>
+                      <option value="cambios">Cambios o devoluciones</option>
+                      <option value="pagos">Pagos y facturación</option>
+                    </select>
+                  </div>
+
+                  <div class="campo">
+                    <label for="contacto-mensaje">Mensaje</label>
+                    <textarea
+                      id="contacto-mensaje"
+                      name="mensaje"
+                      rows="5"
+                      placeholder="contanos tu consulta"
+                      maxlength="500"
+                    ></textarea>
+                  </div>
+
+                  <div class="acciones">
+                    <button type="submit" id="btn-enviar">enviar</button>
+                  </div>
+
+                  <p
+                    id="aviso"
+                    class="aviso"
+                    role="status"
+                    aria-live="polite"
+                    hidden="hidden"
+                  >
+                    mensaje enviado ✔
+                  </p>
+                </form>
+              </div>
+            </article>
+
+            <article class="card canal" id="canal-telefonos">
+              <div class="card-media">
+                <img src="Imagen/Telefono_Contacto.jpg" alt="icono teléfono" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-titulo">Teléfonos por país</h3>
+                <p>Llamanos en los siguientes horarios de atención.</p>
+                <div
+                  class="tabla-wrap"
+                  role="region"
+                  aria-label="teléfonos de contacto"
+                >
+                  <table class="tabla" id="tabla-telefonos">
+                    <thead>
+                      <tr>
+                        <th scope="col">País</th>
+                        <th scope="col">Número</th>
+                        <th scope="col">Horarios</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Argentina</td>
+                        <td>0810-555-xxxx</td>
+                        <td>Todos los días 07:00–22:00</td>
+                      </tr>
+                      <tr>
+                        <td>Brasil</td>
+                        <td>0800-000-xxxx</td>
+                        <td>Lun–Sáb 08:00–18:00, Dom 09:00–16:00</td>
+                      </tr>
+                      <tr>
+                        <td>Otros países</td>
+                        <td>+54 11 3987-xxxx</td>
+                        <td>Todos los días 07:00–23:00 (hora argentina)</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </article>
+
+            <article class="card canal" id="canal-alerta">
+              <div class="card-media">
+                <img
+                  src="Imagen/Alerta_Contacto.webp"
+                  alt="ícono de advertencia"
+                />
+              </div>
+              <div class="card-body">
+                <h3 class="card-titulo">¡Importante!</h3>
+                <ul class="lista" role="list">
+                  <li>No ofrecemos atención por whatsapp ni por una app.</li>
+                  <li>
+                    Nunca pedimos contraseñas ni datos bancarios por chat o
+                    redes.
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </section>
+
+          <aside
+            id="herramientas"
+            class="col-izq"
+            aria-labelledby="tit-herramientas"
+          >
+            <h2 id="tit-herramientas">herramientas</h2>
+
+            <section
+              class="widget"
+              id="widget-tiempo"
+              aria-labelledby="tit-tiempo"
+            >
+              <h3 class="widget-titulo" id="tit-tiempo">Estimador de espera</h3>
+              <form id="form-tiempo" action="#" method="get">
+                <div class="campo">
+                  <label for="dia">Día</label>
+                  <select id="dia" name="dia">
+                    <option value="laboral" selected="selected">laboral</option>
+                    <option value="fin">fin de semana</option>
+                  </select>
+                </div>
+                <div class="campo">
+                  <label for="franja">Franja horaria</label>
+                  <select id="franja" name="franja">
+                    <option value="maniana">mañana</option>
+                    <option value="tarde" selected="selected">tarde</option>
+                    <option value="noche">noche</option>
+                  </select>
+                </div>
+                <div class="acciones">
+                  <button type="button" id="btn-estimar">estimar</button>
+                </div>
+                <p id="resultado" class="resultado" aria-live="polite">
+                  Espera estimada: —
+                </p>
+              </form>
+            </section>
+          </aside>
+        </div>
+      </main>
+
+      <footer id="pie" role="contentinfo">
+        <div class="pie-inner">
+          <p>&copy; 2025 Rutas Argentinas. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("form-contacto");
+        var btn = document.getElementById("btn-enviar");
+        var aviso = document.getElementById("aviso");
+
+        if (!form || !btn || !aviso) return;
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var original = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = "enviando...";
+
+          setTimeout(function () {
+            form.reset();
+            btn.disabled = false;
+            btn.textContent = original;
+
+            aviso.hidden = false;
+            aviso.textContent = "mensaje enviado";
+
+            setTimeout(function () {
+              aviso.hidden = true;
+            }, 3000);
+          }, 400);
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var btnChat = document.getElementById("btn-abrir-chat");
+        if (btnChat) {
+          btnChat.addEventListener("click", function () {
+            window.open("https://chat.openai.com/", "_blank");
+          });
+        }
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var selDia = document.getElementById("dia");
+        var selFranja = document.getElementById("franja");
+        var btn = document.getElementById("btn-estimar");
+        var salida = document.getElementById("resultado");
+
+        // matriz de estimación en HORAS
+        var tabla = {
+          laboral: { maniana: 0.6, tarde: 1.4, noche: 0.8 },
+          fin: { maniana: 0.9, tarde: 1.8, noche: 1.1 },
+        };
+
+        function estimar() {
+          var d = selDia.value; // "laboral" | "fin"
+          var f = selFranja.value; // "maniana" | "tarde" | "noche"
+          var horas = tabla[d] && tabla[d][f] ? tabla[d][f] : 1.0;
+
+          // mostrás en horas con 1 decimal
+          salida.textContent = "Espera estimada: " + horas.toFixed(1) + " h";
+        }
+
+        btn.addEventListener("click", estimar);
+
+        // (opcional) recalcular cuando cambian los selects
+        selDia.addEventListener("change", estimar);
+        selFranja.addEventListener("change", estimar);
+      });
+    </script>
+  </body>
+</html>

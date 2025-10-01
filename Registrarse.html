@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="author" content="Pablo Marquez Capilla" />
+  <meta name="description" content="Registro e ingreso a Rutas Argentinas. Acceso con Facebook, Google o email y clave." />
+  <meta name="keywords" content="registro, login, ingresar, rutas argentinas, viajes" />
+  <title>rutas argentinas — registro</title>
+  <link rel="stylesheet" href="Registrarse.css" type="text/css" />
+</head>
+<body>
+  
+  <div id="fondo">
+    <img src="Imagen/Lago_Ushuaia_LOGIN.webp" alt="lago y montañas en argentina" />
+  </div>
+
+  <div id="contenedor">
+   
+
+    <main id="contenido">
+      <section id="registro" aria-labelledby="tit-registro" role="dialog" aria-modal="true">
+        <div class="modal">
+         <a id="btn-cerrar" class="cerrar" aria-label="volver al inicio" href="index.html" title="volver al inicio">×</a>
+
+
+          <header class="modal-encabezado">
+            <img id="logo-modal" src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg" alt="logotipo rutas argentinas" />
+            <h1 id="tit-registro">registro</h1>
+            <p class="subtitulo">¿No tenes cuenta? Regístrate</p>
+          </header>
+
+          <section class="modal-social" aria-label="ingresar con redes">
+            <button type="button" class="btn-social btn-facebook">
+              <img src="Imagen/Logo_Facebook_LOGIN.png" alt="facebook" />
+              <span>Log in with facebook</span>
+            </button>
+            <button type="button" class="btn-social btn-google">
+              <img src="Imagen/Logo_Google_LOGIN.png" alt="google" />
+              <span>Log in with google</span>
+            </button>
+          </section>
+
+          <div class="separador" role="separator" aria-label="o">or</div>
+
+          <form id="form-login" action="#" method="post" autocomplete="on" novalidate="novalidate">
+            <div class="campo">
+              <label for="email">Tu email</label>
+              <input type="email" id="email" name="email" placeholder="Tu@mail.com" size="28" maxlength="40" required="required" />
+            </div>
+
+            <div class="campo">
+              <label for="clave">tu clave</label>
+             <div class="campo-password">
+                 <input type="password" id="clave" name="clave" placeholder="" size="28" maxlength="30" required="required" />
+                </div>
+
+            </div>
+
+            <div class="acciones">
+              <button type="submit" id="btn-ingresar">ingresar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer id="pie" role="contentinfo">
+      <div class="pie-inner">
+        <section class="marca" aria-label="marca">
+          <img class="marca-logo" src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg" alt="logo rutas argentinas" />
+          <p class="marca-nombre">rutas argentinas</p>
+          <p class="marca-eslogan">turismo por el país</p>
+        </section>
+        <nav id="social" aria-label="redes sociales">
+          <ul class="social-list">
+  <li>
+    <a href="https://www.facebook.com/rutasargentinas"
+       aria-label="facebook" target="_blank" rel="noopener noreferrer">facebook</a>
+  </li>
+  <li>
+    <a href="https://www.linkedin.com/company/rutasargentinas"
+       aria-label="linkedin" target="_blank" rel="noopener noreferrer">linkedin</a>
+  </li>
+  <li>
+    <a href="https://www.youtube.com/@rutasargentinas"
+       aria-label="youtube" target="_blank" rel="noopener noreferrer">youtube</a>
+  </li>
+  <li>
+    <a href="https://www.instagram.com/rutasargentinas"
+       aria-label="instagram" target="_blank" rel="noopener noreferrer">instagram</a>
+  </li>
+
+        </nav>
+      </div>
+    </footer>
+  </div>
+</body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var btnFacebook = document.querySelector('.btn-facebook');
+    var btnGoogle = document.querySelector('.btn-google');
+
+    if (btnFacebook) {
+      btnFacebook.addEventListener('click', function () {
+        window.open('https://www.facebook.com/', '_blank');
+      });
+    }
+    if (btnGoogle) {
+      btnGoogle.addEventListener('click', function () {
+        window.open('https://accounts.google.com/', '_blank');
+      });
+    }
+});
+</script>

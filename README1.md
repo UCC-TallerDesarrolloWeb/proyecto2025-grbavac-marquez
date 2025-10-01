@@ -19,9 +19,10 @@ Sitio web de una empresa de turismo que ofrece información sobre destinos, paqu
 ## Contenido del sitio
 
 1. **Home**: página principal con presentación de la empresa y acceso al buscador de paquetes.
-2. **Destinos**: catálogo de lugares turísticos con imágenes y breves descripciones.
-3. **Paquetes**: tabla con los paquetes disponibles, precios y beneficios incluidos.
+2. **Ciudades**: catálogo de ciudades, junto con una pequena descripcion de sus lugares turísticos con imágenes.
+3. **Buscador**: tabla con los paquetes disponibles, precios y beneficios incluidos.
 4. **Iniciar sesión**: formulario para que el usuario complete sus datos y acceda a su cuenta.
+5. **Actividades**: Publicidades
 
 ## Tecnologías usadas
 
