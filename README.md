@@ -38,8 +38,8 @@ Tener en cuenta:
 
 ### Sobre el Proyecto General
 
-- [ ] La página principal debe llamarse index
-- [ ] NO está permitido descargar un TEMPLATE (diseño 100% desde cero)
+- [x ] La página principal debe llamarse index
+- [x] NO está permitido descargar un TEMPLATE (diseño 100% desde cero)
 - [ ] La estructura del proyecto debe ser adecuada - Crear una carpeta para las imágenes - Carpeta para los sketch - Carpeta para los mockups/Wireframes
       En una segunda etapa, al emplear **React**: - Carpeta de Componentes - Carpeta de Pages - Carpeta de Styles
 - [ ] Identar correctamente el código (en Webstorm Ctrl+Alt+L)

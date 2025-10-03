@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html> 
 <html lang="es">
 <head>
   <meta charset="utf-8" />
@@ -15,13 +15,10 @@
   </div>
 
   <div id="contenedor">
-   
-
     <main id="contenido">
       <section id="registro" aria-labelledby="tit-registro" role="dialog" aria-modal="true">
         <div class="modal">
-         <a id="btn-cerrar" class="cerrar" aria-label="volver al inicio" href="index.html" title="volver al inicio">×</a>
-
+          <a id="btn-cerrar" class="cerrar" aria-label="volver al inicio" href="index.html" title="volver al inicio">×</a>
 
           <header class="modal-encabezado">
             <img id="logo-modal" src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg" alt="logotipo rutas argentinas" />
@@ -42,6 +39,7 @@
 
           <div class="separador" role="separator" aria-label="o">or</div>
 
+          <!-- Dejamos los campos solo visuales; el "Ingresar" es un link simple -->
           <form id="form-login" action="#" method="post" autocomplete="on" novalidate="novalidate">
             <div class="campo">
               <label for="email">Tu email</label>
@@ -50,17 +48,17 @@
 
             <div class="campo">
               <label for="clave">tu clave</label>
-             <div class="campo-password">
-                 <input type="password" id="clave" name="clave" placeholder="" size="28" maxlength="30" required="required" />
-                </div>
-
+              <div class="campo-password">
+                <input type="password" id="clave" name="clave" placeholder="" size="28" maxlength="30" required="required" />
+              </div>
             </div>
 
             <div class="acciones">
-              <button type="submit" id="btn-ingresar">ingresar</button>
-            </div>
-          </form>
-        </div>
+  <a href="index.html" id="btn-ingresar" class="btn btn-primary btn-lg" title="Ir al inicio">
+    Ingresar
+  </a>
+</div>
+
       </section>
     </main>
 
@@ -73,27 +71,60 @@
         </section>
         <nav id="social" aria-label="redes sociales">
           <ul class="social-list">
-  <li>
-    <a href="https://www.facebook.com/rutasargentinas"
-       aria-label="facebook" target="_blank" rel="noopener noreferrer">facebook</a>
-  </li>
-  <li>
-    <a href="https://www.linkedin.com/company/rutasargentinas"
-       aria-label="linkedin" target="_blank" rel="noopener noreferrer">linkedin</a>
-  </li>
-  <li>
-    <a href="https://www.youtube.com/@rutasargentinas"
-       aria-label="youtube" target="_blank" rel="noopener noreferrer">youtube</a>
-  </li>
-  <li>
-    <a href="https://www.instagram.com/rutasargentinas"
-       aria-label="instagram" target="_blank" rel="noopener noreferrer">instagram</a>
-  </li>
-
+            <li>
+              <a href="https://www.facebook.com/rutasargentinas"
+                 aria-label="facebook" target="_blank" rel="noopener noreferrer">facebook</a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/company/rutasargentinas"
+                 aria-label="linkedin" target="_blank" rel="noopener noreferrer">linkedin</a>
+            </li>
+            <li>
+              <a href="https://www.youtube.com/@rutasargentinas"
+                 aria-label="youtube" target="_blank" rel="noopener noreferrer">youtube</a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/rutasargentinas"
+                 aria-label="instagram" target="_blank" rel="noopener noreferrer">instagram</a>
+            </li>
+          </ul>
         </nav>
       </div>
     </footer>
   </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const email = document.getElementById('email');
+  const clave = document.getElementById('clave');
+  const btn   = document.getElementById('btn-ingresar'); // <a href="index.html">
+
+  const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((s||'').trim());
+  const mark = (el, bad) => bad ? el.setAttribute('aria-invalid','true')
+                                : el.removeAttribute('aria-invalid');
+
+  btn.addEventListener('click', (e) => {
+    const eVal = (email.value || '').trim();
+    const cVal = (clave.value || '').trim();
+
+    let msg = '';
+    if (!eVal || !cVal) msg = 'Completá email y clave para ingresar.';
+    else if (!isEmail(eVal)) msg = 'Ingresá un email válido (ej.: usuario@dominio.com).';
+
+    if (msg) {
+      e.preventDefault();           // bloquea ir al index
+      alert(msg);
+      mark(email, !eVal || !isEmail(eVal));
+      mark(clave, !cVal);
+      (!eVal || !isEmail(eVal) ? email : clave).focus();
+      return;
+    }
+    // si es válido, NO prevenimos: el <a> navega a index.html
+  });
+});
+</script>
+
+
 </body>
 
 <script>
@@ -111,5 +142,6 @@
         window.open('https://accounts.google.com/', '_blank');
       });
     }
-});
+  });
 </script>
+</html>

@@ -314,3 +314,64 @@ button {
     font-size: 1.35rem;
   }
 }
+
+/* Contenedor: centrado y sin desbordes */
+.modal .acciones {
+  display: flex;
+  justify-content: center;
+  padding: 8px 12px 0;
+}
+
+/* Botón compacto y legible */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 0;
+}
+.btn-primary.btn-compact {
+  background: linear-gradient(
+    180deg,
+    #3b82f6 0%,
+    #2563eb 100%
+  ); /* azul legible */
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px; /* más chico */
+  line-height: 1;
+  padding: 12px 18px; /* compacto */
+  border-radius: 12px; /* menos pill */
+  width: 100%; /* que no se salga */
+  max-width: 320px; /* ancho cómodo dentro del modal */
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.22);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
+}
+
+.btn-primary.btn-compact:hover {
+  background: linear-gradient(180deg, #60a5fa 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(29, 78, 216, 0.3);
+}
+
+.btn-primary.btn-compact:active {
+  transform: none;
+  box-shadow: 0 5px 12px rgba(29, 78, 216, 0.25);
+}
+.btn-primary.btn-compact:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+/* Si algún reset te subraya links */
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+}
+
+/* Respeta usuarios sin animaciones */
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary.btn-compact {
+    transition: none;
+  }
+}

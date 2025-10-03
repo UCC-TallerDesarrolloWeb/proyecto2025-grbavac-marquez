@@ -291,3 +291,6 @@ footer {
     height: 300px;
   }
 }
+.is-hidden {
+  display: none;
+}
