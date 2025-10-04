@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pablo Marquez Capilla - Darko Grbavac " />
+    <meta
+      name="description"
+      content="Buscador de destinos y actividades de Rutas Argentinas con filtros por fecha, temas y ubicación."
+    />
+    <meta
+      name="keywords"
+      content="buscador, destinos, actividades, argentina, filtros"
+    />
+    <title>rutas argentinas — buscador de destinos</title>
+    <link rel="stylesheet" href="Buscador.css" type="text/css" />
+  </head>
+  <body>
+    <div id="contenedor">
+      <header id="cabecera" role="banner">
+        <div class="cabecera-inner">
+          <a href="index.html" class="logo" aria-label="ir al inicio">
+            <img
+              src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg"
+              alt="logotipo de rutas argentinas"
+              id="logo"
+            />
+          </a>
+          <h1 id="titulo-pagina">destinos disponibles</h1>
+          <nav id="nav-principal" aria-label="navegación principal">
+            <ul class="menu">
+              <li><a href="index.html" title="ir al inicio">Inicio</a></li>
+              <li>
+                <a href="Actividades.html" title="ir a planes">Actividades</a>
+              </li>
+              <li><a href="Contacto.html" title="ir al pie">Contacto</a></li>
+              <li>
+                <a href="Registrarse.html" title="ir al pie"
+                  >Registrarse / Iniciar Sesion</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main id="contenido">
+        <div class="layout">
+          <aside id="filtros" aria-label="filtros" class="col-izq">
+            <form id="form-filtros" action="#" method="get">
+              <section
+                class="bloque"
+                id="bloque-temas"
+                aria-labelledby="tit-temas"
+              >
+                <h2 class="bloque-titulo" id="tit-temas">Temas</h2>
+                <fieldset class="grupo">
+                  <legend class="visually-hidden">Temáticas</legend>
+                  <ul class="lista-check" role="list">
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-acuaticas"
+                        name="temas"
+                        value="acuaticas"
+                      />
+                      <label for="c-acuaticas">Actividades</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-adrenalina"
+                        name="temas"
+                        value="adrenalina"
+                      />
+                      <label for="c-adrenalina">Adrenalina</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-naturaleza"
+                        name="temas"
+                        value="naturaleza"
+                      />
+                      <label for="c-naturaleza">Naturaleza</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="c-arte"
+                        name="temas"
+                        value="arte"
+                      />
+                      <label for="c-arte">Arte callejero y Grafitis</label>
+                    </li>
+                  </ul>
+                </fieldset>
+              </section>
+
+              <section
+                class="bloque"
+                id="bloque-destino"
+                aria-labelledby="tit-destino"
+              >
+                <h2 class="bloque-titulo" id="tit-destino">Destino</h2>
+                <fieldset class="grupo">
+                  <legend class="visually-hidden">zonas</legend>
+                  <div class="campo">
+                    <label for="buscar-zona">Buscar Ciudad</label>
+                    <input
+                      type="text"
+                      id="buscar-zona"
+                      name="buscar_zona"
+                      placeholder="córdoba, buenos aires..."
+                      size="22"
+                      maxlength="40"
+                    />
+                  </div>
+                  <ul class="lista-check" role="list">
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="d-centro"
+                        name="zona"
+                        value="centro"
+                      />
+                      <label for="d-centro">Pampeana</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="d-noroeste"
+                        name="zona"
+                        value="noroeste"
+                      />
+                      <label for="d-noroeste">Noroeste</label>
+                    </li>
+
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="d-patagonia"
+                        name="zona"
+                        value="patagonia"
+                      />
+                      <label for="d-patagonia">Patagonia</label>
+                    </li>
+                    <li>
+                      <input
+                        type="checkbox"
+                        id="d-litoral"
+                        name="zona"
+                        value="litoral"
+                      />
+                      <label for="d-litoral">Litoral</label>
+                    </li>
+                  </ul>
+                </fieldset>
+              </section>
+            </form>
+          </aside>
+
+          <section
+            id="resultados"
+            class="col-der"
+            aria-labelledby="tit-resultados"
+          >
+            <header class="resultados-encabezado">
+              <p id="cantidad">Ciudades Encontradas</p>
+              <div class="orden">
+                <label for="ordenar">Elegir por:</label>
+                <select id="ordenar" name="ordenar">
+                  <option value="price-asc">
+                    Precio: Mas Barato a Mas Caro
+                  </option>
+                  <option value="price-desc">
+                    Precio: Mas Caro a Mas Barato
+                  </option>
+                </select>
+              </div>
+            </header>
+            <ul class="listado" role="list">
+              <li>
+                <a href="Tucuman.html" class="card-link">
+                  <article class="card" id="card-tucuman">
+                    <div class="card-media">
+                      <img
+                        src="Imagen/Tucuman_Foto_Buscador.jpg"
+                        alt="vista panorámica de tucumán"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <p class="badge">Actividades</p>
+                      <h3 class="card-titulo">Tucuman</h3>
+                      <ul class="card-meta" role="list">
+                        <li>2 hours</li>
+                        <li>Transporte</li>
+                        <li>Planes Familiares</li>
+                      </ul>
+                    </div>
+                    <aside class="card-precio" aria-label="precio">
+                      <p class="monto" data-price="35.00">$35.00</p>
+                      <small>Por Persona</small>
+                    </aside>
+                  </article>
+                </a>
+              </li>
+
+              <li>
+                <a href="BuenosAires.html" class="card-link">
+                  <article class="card" id="card-buenos-aires">
+                    <div class="card-media">
+                      <img
+                        src="Imagen/Buenos_Aires_Foto_Buscador.jpeg.jpg"
+                        alt="obelisco de buenos aires"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <p class="badge">Actividades</p>
+                      <h3 class="card-titulo">Buenos Aires</h3>
+                      <ul class="card-meta" role="list">
+                        <li>4 hours</li>
+                        <li>Transporte</li>
+                        <li>Conciertos</li>
+                      </ul>
+                    </div>
+                    <aside class="card-precio" aria-label="precio">
+                      <p class="monto" data-price="55.00">$55.00</p>
+                      <small>Por Persona</small>
+                    </aside>
+                  </article>
+                </a>
+              </li>
+
+              <li>
+                <a href="Cordoba.html" class="card-link">
+                  <article class="card" id="card-cordoba">
+                    <div class="card-media">
+                      <img
+                        src="Imagen/Cordoba_Foto_Buscador.jpg"
+                        alt="cartel córdoba argentina"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <p class="badge">Actividades</p>
+                      <h3 class="card-titulo">Cordoba</h3>
+                      <ul class="card-meta" role="list">
+                        <li>6 hours</li>
+                        <li>Transporte</li>
+                        <li>Conciertos</li>
+                      </ul>
+                    </div>
+                    <aside class="card-precio" aria-label="precio">
+                      <p class="monto" data-price="50.00">$50.00</p>
+                      <small>Por Persona</small>
+                    </aside>
+                  </article>
+                </a>
+              </li>
+
+              <li>
+                <a href="Salta.html" class="card-link">
+                  <article class="card" id="card-salta">
+                    <div class="card-media">
+                      <img
+                        src="Imagen/Salta_Foto_Buscador.webp"
+                        alt=" paisaje de salta"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <p class="badge">Actividades</p>
+                      <h3 class="card-titulo">Salta</h3>
+                      <ul class="card-meta" role="list">
+                        <li>12 hours</li>
+                        <li>Transporte</li>
+                        <li>Salinas</li>
+                      </ul>
+                    </div>
+                    <aside class="card-precio" aria-label="precio">
+                      <p class="monto" data-price="44.00">$44.00</p>
+                      <small>Por Persona</small>
+                    </aside>
+                  </article>
+                </a>
+              </li>
+
+              <li>
+                <a href="Ushuaia.html" class="card-link">
+                  <article class="card" id="card-ushuaia">
+                    <div class="card-media">
+                      <img
+                        src="Imagen/Ushuaia_Foto_Buscador.jpg"
+                        alt="ushuaia de noche"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <p class="badge">Actividades</p>
+                      <h3 class="card-titulo">Ushuaia</h3>
+                      <ul class="card-meta" role="list">
+                        <li>15 hours</li>
+                        <li>Transporte</li>
+                        <li>Ski/Snowboard</li>
+                      </ul>
+                    </div>
+                    <aside class="card-precio" aria-label="precio">
+                      <p class="monto" data-price="55.00">$55.00</p>
+                      <small>Por Persona</small>
+                    </aside>
+                  </article>
+                </a>
+              </li>
+
+              <li>
+                <a href="Misiones.html" class="card-link">
+                  <article class="card" id="card-misiones">
+                    <div class="card-media">
+                      <img
+                        src="Imagen/Misiones_Foto_Buscador.webp"
+                        alt="paisaje del iguazú"
+                      />
+                    </div>
+                    <div class="card-body">
+                      <p class="badge">Actividades</p>
+                      <h3 class="card-titulo">misiones</h3>
+                      <ul class="card-meta" role="list">
+                        <li>14 hours</li>
+                        <li>Transporte</li>
+                        <li>Kayak y Mas</li>
+                      </ul>
+                    </div>
+                    <aside class="card-precio" aria-label="precio">
+                      <p class="monto" data-price="30.00">$30.00</p>
+                      <small>Por Persona</small>
+                    </aside>
+                  </article>
+                </a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </main>
+
+      <footer id="pie" role="contentinfo">
+        <div class="pie-inner">
+          <p>&copy; 2025 rutas argentinas. Todos los derechos reservados.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Carga del script con la lógica de orden -->
+    <script src="funciones.js" defer></script>
+  </body>
+</html>

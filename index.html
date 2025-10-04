@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Pablo Marquez Capilla" />
+    <meta
+      name="description"
+      content="Rutas Argentinas: buscá pasajes y planes para viajar por Argentina. Paquetes, hoteles y resorts."
+    />
+    <meta
+      name="keywords"
+      content="viajes, argentina, pasajes, hoteles, resorts, turismo"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>rutas argentinas — buscador y planes</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+  </head>
+  <script src="funciones.js" defer></script>
+  <body>
+    <div id="contenedor">
+      <header id="cabecera">
+        <div class="cabecera-inner">
+          <a href="index.html" aria-label="Ir al inicio">
+            <img
+              id="logo"
+              src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg"
+              alt="logotipo de rutas argentinas"
+            />
+          </a>
+          <h1 id="titulo">Rutas Argentinas</h1>
+          <nav id="nav-principal" aria-label="navegación principal">
+            <ul id="menu">
+              <li><a href="Buscador.html" title="ir al buscador">Buscar</a></li>
+            <li><a href="Actividades.html" title="ir a planes">Actividades</a></li>
+            <li><a href="Contacto.html" title="ir al pie">Contacto</a></li>
+            <li><a href="Registrarse.html" title="ir al pie">Registrarse / Iniciar Sesion</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main id="contenido">
+        <section id="hero">
+          <div class="hero-inner">
+            <img
+              id="hero-img"
+              src="Imagen/Perito_Moreno_Glacier.jpg"
+              alt="paisaje del glaciar perito moreno en santa cruz, argentina"
+            />
+
+            <div id="buscador">
+              <form id="form-busqueda" action="#" method="get" novalidate>
+                <div class="fila">
+                  <div class="campo">
+                    <label for="origen">origen</label>
+                    <input
+                      type="text"
+                      id="origen"
+                      name="origen"
+                      placeholder="ciudad de origen"
+                      size="20"
+                      maxlength="30"
+                      required
+                    />
+                  </div>
+                  <div class="campo">
+                    <label for="destino">destino</label>
+                    <input
+                      type="text"
+                      id="destino"
+                      name="destino"
+                      placeholder="ciudad de destino"
+                      size="20"
+                      maxlength="30"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div class="fila">
+                  <div class="campo">
+                    <label for="fecha-ida">rango fechas</label>
+                    <input
+                      type="date"
+                      id="fecha-ida"
+                      name="fecha_ida"
+                      size="10"
+                    />
+                    <input
+                      type="date"
+                      id="fecha-vuelta"
+                      name="fecha_vuelta"
+                      size="10"
+                    />
+                  </div>
+                  <div class="campo">
+                    <label for="pasajeros">pasajeros</label>
+                    <input
+                      type="number"
+                      id="pasajeros"
+                      name="pasajeros"
+                      placeholder="0"
+                      size="4"
+                      min="0"
+                      max="10"
+                      step="1"
+                    />
+                  </div>
+                  <div class="campo">
+                    <button type="submit" id="btn-buscar">buscar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="planes">
+          <div class="planes-inner">
+            <h2>planes</h2>
+            <p>search flights & places hire to our most popular destinations</p>
+
+            <div class="lista-planes">
+              <!-- Tucumán -->
+              <article class="card" id="card-tucuman">
+                <a
+                  class="card-link"
+                  href="Tucuman.html"
+                  title="Ver planes en Tucumán"
+                >
+                  <img
+                    src="Imagen/Tucuman_Foto_home.webp"
+                    alt="tucumán argentina"
+                  />
+                  <div class="card-texto">
+                    <h3>tucumán, argentina</h3>
+                    <p>pasajes · hoteles · resorts</p>
+                  </div>
+                </a>
+              </article>
+
+              <!-- Buenos Aires -->
+              <article class="card" id="card-buenos-aires">
+                <a
+                  class="card-link"
+                  href="BuenosAires.html"
+                  title="Ver planes en Buenos Aires"
+                >
+                  <img
+                    src="Imagen/Buenos_Aires_Foto_home.jpeg.jpg"
+                    alt="buenos aires argentina"
+                  />
+                  <div class="card-texto">
+                    <h3>buenos aires, argentina</h3>
+                    <p>pasajes · hoteles · resorts</p>
+                  </div>
+                </a>
+              </article>
+
+              <!-- Salta -->
+              <article class="card" id="card-salta">
+                <a
+                  class="card-link"
+                  href="Salta.html"
+                  title="Ver planes en Salta"
+                >
+                  <img
+                    src="Imagen/Salta_Foto_home.jpeg.jpg"
+                    alt="salta argentina"
+                  />
+                  <div class="card-texto">
+                    <h3>salta, argentina</h3>
+                    <p>pasajes · hoteles · resorts</p>
+                  </div>
+                </a>
+              </article>
+
+              <!-- Córdoba -->
+              <article class="card" id="card-cordoba">
+                <a
+                  class="card-link"
+                  href="Cordoba.html"
+                  title="Ver planes en Córdoba"
+                >
+                  <img
+                    src="Imagen/Cordoba_Foto_home.jpg"
+                    alt="córdoba argentina"
+                  />
+                  <div class="card-texto">
+                    <h3>córdoba, argentina</h3>
+                    <p>pasajes · hoteles · resorts</p>
+                  </div>
+                </a>
+              </article>
+
+              <!-- Misiones -->
+              <article class="card" id="card-misiones">
+                <a
+                  class="card-link"
+                  href="Misiones.html"
+                  title="Ver planes en Misiones"
+                >
+                  <img
+                    src="Imagen/Misiones_Foto_home.jpg"
+                    alt="misiones argentina"
+                  />
+                  <div class="card-texto">
+                    <h3>misiones, argentina</h3>
+                    <p>pasajes · hoteles · resorts</p>
+                  </div>
+                </a>
+              </article>
+
+              <!-- Ushuaia -->
+              <article class="card" id="card-ushuaia">
+                <a
+                  class="card-link"
+                  href="Usuahia.html"
+                  title="Ver planes en Ushuaia"
+                >
+                  <img
+                    src="Imagen/Ushuaia_Foto_home.jpeg.jpg"
+                    alt="ushuaia argentina"
+                  />
+                  <div class="card-texto">
+                    <h3>ushuaia, argentina</h3>
+                    <p>pasajes · hoteles · resorts</p>
+                  </div>
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+        <!-- Comentarios -->
+        <section id="testimonios" aria-labelledby="tit-testimonios">
+          <div class="testimonios-inner">
+            <h2 id="tit-testimonios">Comentarios</h2>
+            <p class="sub">Mirá qué opina la gente de nosotros</p>
+
+            <div class="grid-testimonios">
+              <!-- Card 1 -->
+              <article class="t-card">
+                <div class="t-offset" aria-hidden="true"></div>
+
+                <blockquote class="t-quote">
+                  “Excelente experiencia 10/10”
+                </blockquote>
+
+                <div
+                  class="t-stars"
+                  aria-label="5 de 5 estrellas"
+                  title="5 de 5"
+                >
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+
+                <p class="t-author">– Lorenzo Rossi Bossio</p>
+
+                <img
+                  class="t-photo"
+                  src="Imagen/Comentarios-1.jpeg"
+                  alt="Paisaje de lagos y montañas en la Patagonia"
+                />
+              </article>
+
+              <!-- Card 2 -->
+              <article class="t-card">
+                <div class="t-offset" aria-hidden="true"></div>
+
+                <blockquote class="t-quote">“Atención excelente”</blockquote>
+
+                <div
+                  class="t-stars"
+                  aria-label="5 de 5 estrellas"
+                  title="5 de 5"
+                >
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+
+                <p class="t-author">– Andrés Romanutti</p>
+
+                <img
+                  class="t-photo"
+                  src="Imagen/Comentario3.jpg"
+                  alt="Auroras en el cielo nocturno"
+                />
+              </article>
+
+              <!-- Card 3 -->
+              <article class="t-card">
+                <div class="t-offset" aria-hidden="true"></div>
+
+                <blockquote class="t-quote">
+                  “Gran relación calidad-precio”
+                </blockquote>
+
+                <div
+                  class="t-stars"
+                  aria-label="5 de 5 estrellas"
+                  title="5 de 5"
+                >
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+
+                <p class="t-author">– Federico Esteban Almada “El Chino”</p>
+
+                <img
+                  class="t-photo"
+                  src="Imagen/Comentario2.jpg"
+                  alt="Interior de glaciar con turista"
+                />
+              </article>
+              <!-- Card 4 -->
+              <article class="t-card">
+                <div class="t-offset" aria-hidden="true"></div>
+
+                <blockquote class="t-quote">
+                  “Estuvo bien, pero podría mejorar el servicio.”
+                </blockquote>
+
+                <div
+                  class="t-stars"
+                  aria-label="5 de 5 estrellas"
+                  title="5 de 5"
+                >
+                  <span>★</span><span>★</span><span>★</span>
+                </div>
+
+                <p class="t-author">– Octavio Del Fabro</p>
+
+                <img
+                  class="t-photo"
+                  src="Imagen/Comentario4.jpeg"
+                  alt="Interior de glaciar con turista"
+                />
+              </article>
+              <!-- Card 5 -->
+              <article class="t-card">
+                <div class="t-offset" aria-hidden="true"></div>
+
+                <blockquote class="t-quote">
+                  “Correcto, aunque esperaba más opciones”
+                </blockquote>
+
+                <div
+                  class="t-stars"
+                  aria-label="3 de 5 estrellas"
+                  title="3 de 5"
+                >
+                  <span>★</span><span>★</span><span>★</span>
+                </div>
+
+                <p class="t-author">– Juan Scaglia</p>
+
+                <img
+                  class="t-photo"
+                  src="Imagen/Comentario5.jpeg"
+                  alt="Interior de glaciar con turista"
+                />
+              </article>
+              <!-- Card 6 -->
+              <article class="t-card">
+                <div class="t-offset" aria-hidden="true"></div>
+
+                <blockquote class="t-quote">
+                  “Muy recomendable, todo salió perfecto”
+                </blockquote>
+
+                <div
+                  class="t-stars"
+                  aria-label="5 de 5 estrellas"
+                  title="5 de 5"
+                >
+                  <span>★</span><span>★</span><span>★</span><span>★</span
+                  ><span>★</span>
+                </div>
+
+                <p class="t-author">– Valentina López</p>
+
+                <img
+                  class="t-photo"
+                  src="Imagen/Comentario6.jpg"
+                  alt="Interior de glaciar con turista"
+                />
+              </article>
+            </div>
+          </div>
+        </section>
+      </main>
+
+    <footer id="pie" class="pie-hero">
+  <div class="pie-inner">
+  
+
+    <!-- Bloque de marca y slogan -->
+    <div class="pie-brand">
+      <img src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg" alt="Rutas Argentinas" class="pie-logo" />
+      <h3 class="pie-title">
+        Rutas Argentinas
+        <span class="pie-slogan">TURISMO POR EL PAÍS</span>
+      </h3>
+    </div>
+
+    <!-- Redes sociales -->
+    <nav class="pie-social" aria-label="redes sociales">
+      <ul>
+        <li>
+          <a href="https://www.facebook.com/rutasargentinas"
+             aria-label="facebook" target="_blank" rel="noopener noreferrer">facebook</a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/rutasargentinas"
+             aria-label="linkedin" target="_blank" rel="noopener noreferrer">linkedin</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/@rutasargentinas"
+             aria-label="youtube" target="_blank" rel="noopener noreferrer">youtube</a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/rutasargentinas"
+             aria-label="instagram" target="_blank" rel="noopener noreferrer">instagram</a>
+        </li>
+      </ul>
+    </nav>
+      <!-- Texto de copyright -->
+    <p>&copy; 2025 Rutas Argentinas. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+
+
+  </body>
+</html>

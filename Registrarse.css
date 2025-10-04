@@ -1,0 +1,377 @@
+/* ---------------------------------------------STYLE DEL REGISTARSE -----------------------------------------------------------------------------------*/
+
+:root {
+  --bg: #f7f8fa;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --surface: #ffffff;
+  --line: #e5e7eb;
+  --primary: #2563eb; /* azul botones sociales */
+  --google: #ea4335;
+  --radius: 16px;
+  --radius-lg: 22px;
+  --shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+  --shadow-sm: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* TAG selectors */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+button {
+  cursor: pointer;
+  font: inherit;
+}
+
+/* ID selectors */
+#fondo {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+#fondo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#fondo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.25),
+    rgba(255, 255, 255, 0.65) 70%,
+    rgba(255, 255, 255, 0.9)
+  );
+}
+
+#contenedor {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+#registro {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+/* modal */
+.modal {
+  position: relative;
+  width: min(560px, 92%);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+.cerrar {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  display: grid;
+  place-items: center;
+  color: #6b7280;
+}
+.cerrar:hover {
+  background: #f3f4f6;
+}
+
+.modal-encabezado {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+#logo-modal {
+  width: 40px;
+  height: auto;
+}
+#tit-registro {
+  margin: 8px 0 0 0;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+.subtitulo {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* botones sociales */
+.modal-social {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.btn-social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.06s ease;
+}
+.btn-social:hover {
+  transform: translateY(-1px);
+}
+.btn-social img {
+  width: 20px;
+  height: 20px;
+}
+.btn-facebook span {
+  color: #1b4db1;
+}
+.btn-google span {
+  color: var(--google);
+}
+
+/* separador OR */
+.separador {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  margin: 12px 0 14px;
+}
+.separador::before,
+.separador::after {
+  content: "";
+  height: 1px;
+  background: var(--line);
+  flex: 1;
+}
+.separador::before {
+  margin-right: 12px;
+}
+.separador::after {
+  margin-left: 12px;
+}
+
+/* formulario */
+#form-login {
+  display: grid;
+  gap: 14px;
+}
+.campo label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 6px 0;
+  text-transform: capitalize;
+}
+.campo input {
+  width: 100%;
+  height: 44px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+}
+.campo input::placeholder {
+  color: #9ca3af;
+}
+.campo input:focus {
+  outline: 2px solid #c7d2fe;
+  outline-offset: 1px;
+}
+
+.campo-password {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+}
+.btn-icono {
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  color: #6b7280;
+}
+.btn-icono:hover {
+  background: #f3f4f6;
+}
+.estado-clave {
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* acciones */
+.acciones {
+  margin-top: 6px;
+}
+#btn-ingresar {
+  width: 100%;
+  height: 46px;
+  border: 0;
+  border-radius: 999px;
+  background: #cfcfcf;
+  color: #fff;
+  font-weight: 700;
+}
+#btn-ingresar:hover {
+  filter: brightness(0.96);
+}
+#btn-ingresar:active {
+  transform: translateY(1px);
+}
+#btn-ingresar:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* footer */
+#pie {
+  padding: 28px 20px;
+  color: #4b5563;
+}
+.pie-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.marca-logo {
+  width: 64px;
+  height: auto;
+}
+.marca-nombre {
+  margin: 0;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+.marca-eslogan {
+  margin: 0;
+  margin-top: -4px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+}
+
+#social .social-list {
+  list-style: none;
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+}
+#social .social-list a {
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+#social .social-list a:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* responsive */
+@media (max-width: 480px) {
+  .modal {
+    padding: 22px;
+  }
+  #tit-registro {
+    font-size: 1.35rem;
+  }
+}
+
+/* Contenedor: centrado y sin desbordes */
+.modal .acciones {
+  display: flex;
+  justify-content: center;
+  padding: 8px 12px 0;
+}
+
+/* Botón compacto y legible */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 0;
+}
+.btn-primary.btn-compact {
+  background: linear-gradient(
+    180deg,
+    #3b82f6 0%,
+    #2563eb 100%
+  ); /* azul legible */
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px; /* más chico */
+  line-height: 1;
+  padding: 12px 18px; /* compacto */
+  border-radius: 12px; /* menos pill */
+  width: 100%; /* que no se salga */
+  max-width: 320px; /* ancho cómodo dentro del modal */
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.22);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.2s ease;
+}
+
+.btn-primary.btn-compact:hover {
+  background: linear-gradient(180deg, #60a5fa 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(29, 78, 216, 0.3);
+}
+
+.btn-primary.btn-compact:active {
+  transform: none;
+  box-shadow: 0 5px 12px rgba(29, 78, 216, 0.25);
+}
+.btn-primary.btn-compact:focus-visible {
+  outline: 3px solid #93c5fd;
+  outline-offset: 3px;
+}
+
+/* Si algún reset te subraya links */
+.btn:link,
+.btn:visited {
+  text-decoration: none;
+}
+
+/* Respeta usuarios sin animaciones */
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary.btn-compact {
+    transition: none;
+  }
+}
