@@ -6,10 +6,10 @@ Estructura de Proyecto Taller de Desarrollo Web - 2025
 
 ### Sobre el Sketch
 
-- [ ] Versión Desktop y Mobile
-- [ ] Guardado en formato PNG, JPG ó PDF
-- [ ] Dentro de una carpeta llamada "Sketch"
-- [ ] En el diseño tener en cuenta los mensajes de error para el usuario
+- [x] Versión Desktop y Mobile
+- [x] Guardado en formato PNG, JPG ó PDF
+- [x] Dentro de una carpeta llamada "Sketch"
+- [x] En el diseño tener en cuenta los mensajes de error para el usuario
 
 Tener en cuenta:
 
@@ -21,20 +21,20 @@ Tener en cuenta:
 
 ### Sobre el Wireframe/Mockup
 
-- [ ] Dibujado con algún programa como: Figma, AdobeXD, Canvas, Draw.io en Drive, Pencil Project, Mockups, NinjaMock, o similares.
-- [ ] Diseño de Mensajes de error para el usuario
-- [ ] Versión Desktop y Mobile
-- [ ] Guardado en formato PNG, JPG ó PDF
-- [ ] Dentro de una carpeta llamada "Wireframe" ó "Mockup"
+- [x] Dibujado con algún programa como: Figma, AdobeXD, Canvas, Draw.io en Drive, Pencil Project, Mockups, NinjaMock, o similares.
+- [x] Diseño de Mensajes de error para el usuario
+- [x] Versión Desktop y Mobile
+- [x] Guardado en formato PNG, JPG ó PDF
+- [x] Dentro de una carpeta llamada "Wireframe" ó "Mockup"
 
 ### Sobre el Repositorio
 
-- [ ] El proyecto debe estar subido al repositorio adecuado "Proyecto2025-ApellidoAlumno1-ApellidoAlumno2"
-- [ ] Modificar el Readme.MD y colocar información del proyecto/página (mínimamente: título del proyecto, autores con nombre y apellido, link de gh-pages, contenido de la página, listado de tecnologías usadas, etc)
-- [ ] En el **readme.md** se debe emplear Markdown y aplicar negrita, titulo de orden 1, 2 y 3, link, items, tabla, index a cada sección
-- [ ] El código debe estar pusheado en el repositorio (emplear gh-pages ó publicar la página desde el main), y no debe haber diferencias entre **main** y **gh-pages** (verificar de realizar el Merge).
-- [ ] Publicar la Web empleando GitHubPages
-- [ ] El repositorio no debe contener archivos innecesarios (no debe contener .idea o .vsc ni .DS_Store, en todo caso emplear **.gitignore**)
+- [x] El proyecto debe estar subido al repositorio adecuado "Proyecto2025-ApellidoAlumno1-ApellidoAlumno2"
+- [x] Modificar el Readme.MD y colocar información del proyecto/página (mínimamente: título del proyecto, autores con nombre y apellido, link de gh-pages, contenido de la página, listado de tecnologías usadas, etc)
+- [x] En el **readme.md** se debe emplear Markdown y aplicar negrita, titulo de orden 1, 2 y 3, link, items, tabla, index a cada sección
+- [x] El código debe estar pusheado en el repositorio (emplear gh-pages ó publicar la página desde el main), y no debe haber diferencias entre **main** y **gh-pages** (verificar de realizar el Merge).
+- [x] Publicar la Web empleando GitHubPages
+- [x] El repositorio no debe contener archivos innecesarios (no debe contener .idea o .vsc ni .DS_Store, en todo caso emplear **.gitignore**)
 
 ### Sobre el Proyecto General
 
@@ -203,3 +203,47 @@ const activities = [
 - [ ] No debe haber errores JavaScript presentes (F12 > Consola)
 - [ ] Debe cumplir con TODOS los requisitos del 1er y 2do Parcial (si se agrego código nuevo en Js, se debe documentar, si hay nuevos inputs de html deben contener su label, etc)
 - [ ] Incluir al menos 5 tests con Jest + React Testing Library (ejemplo: que un botón renderice un texto esperado).
+
+## READ ME del Primer Parcial
+
+# Proyecto Turismo 2025
+
+## Descripción
+
+Sitio web de una empresa de turismo que ofrece información sobre destinos, paquetes turísticos y un cotizador en línea para calcular el costo de un viaje según destino, cantidad de noches y personas.
+
+## Autores
+
+- Marquez, Pablo
+- Grbavac, Darko
+
+## Links
+
+- Repositorio en GitHub: [https://github.com/UCC-TallerDesarrolloWeb/proyecto2025-grbavac-marquez.git]
+- Página publicada en GitHub Pages: [https://darko22222.github.io/proyecto2025-grbavac-marquez/]
+
+## Contenido del sitio
+
+## Contenido del sitio
+
+1. **Home**: página principal con presentación de la empresa y acceso al buscador de paquetes.
+2. **Ciudades**: catálogo de ciudades, junto con una pequena descripcion de sus lugares turísticos con imágenes.
+3. **Buscador**: tabla con los paquetes disponibles, precios y beneficios incluidos.
+4. **Iniciar sesión**: formulario para que el usuario complete sus datos y acceda a su cuenta.
+5. **Actividades**: Publicidades
+
+## Tecnologías usadas
+
+- HTML5 (estructura semántica)
+- CSS3 (estilos y diseño responsive)
+- JavaScript (validaciones y cotizador)
+- GitHub Pages (deploy del proyecto)
+
+## Tabla de tecnologías
+
+| Tecnología   | Uso principal                       |
+| ------------ | ----------------------------------- |
+| HTML5        | Estructura del sitio                |
+| CSS3         | Estilos y diseño responsive         |
+| JavaScript   | Lógica del cotizador y validaciones |
+| GitHub Pages | Publicación online del proyecto     |
