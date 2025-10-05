@@ -1,6 +1,14 @@
-// funciones.js — ordenar cards por precio (asc/desc)
 ((global) => {
-  // --------- ORDEN POR PRECIO (asc/desc) ----------
+  /**
+   * Inicializa el ordenamiento de cards por precio
+   * @method initOrdenPrecio
+   * @param {Object} config - Configuración del ordenamiento
+   * @param {string} config.selectId - ID del elemento select para ordenar
+   * @param {string} config.listSelector - Selector CSS de la lista de cards
+   * @param {string} config.itemSelector - Selector CSS de los items dentro de la lista
+   * @param {string} config.priceSelector - Selector CSS del elemento que contiene el precio
+   * @return {Object} Objeto con estado de inicialización y función ordenar
+   */
   const initOrdenPrecio = ({
     selectId = "ordenar",
     listSelector = ".listado",
@@ -11,7 +19,6 @@
     const list = document.querySelector(listSelector);
     if (!select || !list) return { ok: false, motivo: "Falta select o lista" };
 
-    // cache para orden estable
     const originalItems = Array.from(list.querySelectorAll(itemSelector));
 
     const getPrice = (li) => {
@@ -46,7 +53,7 @@
     };
 
     select.addEventListener("change", ordenar);
-    ordenar(); // aplica el orden inicial
+    ordenar();
     return { ok: true, ordenar };
   };
 
@@ -54,15 +61,26 @@
   document.addEventListener("DOMContentLoaded", () => {
     global.Funciones = global.Funciones || {};
     global.Funciones.initOrdenPrecio = initOrdenPrecio;
-    initOrdenPrecio(); // auto-init con ids/selectores por defecto
+    initOrdenPrecio();
   });
 })(window);
 
 // funciones.js — filtro por Destino (texto + zonas, incluye Noroeste)
 ((global) => {
+  /**
+   * Inicializa el filtro de destinos por zona y texto
+   * @method initFiltroDestino
+   * @param {Object} config - Configuración del filtro
+   * @param {string} config.inputId - ID del campo de búsqueda
+   * @param {string} config.checksSelector - Selector CSS de los checkboxes de zonas
+   * @param {string} config.listSelector - Selector CSS de la lista de destinos
+   * @param {string} config.itemSelector - Selector CSS de los items dentro de la lista
+   * @param {string} config.titleSelector - Selector CSS del título de la card
+   * @param {string} config.articleSelector - Selector CSS del artículo contenedor
+   * @return {Object} Objeto con estado de inicialización y función aplicar
+   */
   const initFiltroDestino = ({
     inputId = "buscar-zona",
-    // Tomamos TODOS los checkboxes dentro de la lista de zonas, sin depender del name
     checksSelector = '#bloque-destino .lista-check input[type="checkbox"]',
     listSelector = ".listado",
     itemSelector = ".listado > li",
@@ -84,7 +102,6 @@
         .normalize("NFD")
         .replace(/\p{Diacritic}/gu, "");
 
-    // Heurística de zona si no hay data-zona en el <article>
     const inferZona = (li) => {
       const art = li.querySelector(articleSelector);
       if (!art) return "";
@@ -92,7 +109,7 @@
       if (dz) return norm(dz);
 
       const t = norm(li.querySelector(titleSelector)?.textContent);
-      // NUEVO: noroeste para Salta y Tucumán
+      // noroeste para Salta y Tucumán
       if (t.includes("salta") || t.includes("tucuman") || t.includes("tucum"))
         return "noroeste";
       // Patagonia
@@ -107,17 +124,15 @@
         t.includes("córdoba")
       )
         return "centro";
-      // Sin zona clara
       return "";
     };
 
-    // Zonas seleccionadas (OR entre checks)
     const zonasSeleccionadas = () =>
       checks.filter((c) => c.checked).map((c) => norm(c.value));
 
     const aplicar = () => {
       const q = norm(input.value);
-      const zonas = zonasSeleccionadas(); // [] => no filtra por zona
+      const zonas = zonasSeleccionadas();
 
       items.forEach((li) => {
         const titulo = norm(li.querySelector(titleSelector)?.textContent);
@@ -130,7 +145,6 @@
       });
     };
 
-    // Debounce para el input de búsqueda
     let timer;
     const debounced = () => {
       clearTimeout(timer);
@@ -140,7 +154,7 @@
     input.addEventListener("input", debounced);
     checks.forEach((c) => c.addEventListener("change", aplicar));
 
-    aplicar(); // primera pasada
+    aplicar();
     return { ok: true, aplicar };
   };
 
@@ -152,6 +166,18 @@
 })(window);
 
 ((global) => {
+  /**
+   * Inicializa el filtro por temas de actividades
+   * @method initFiltroTemas
+   * @param {Object} config - Configuración del filtro
+   * @param {string} config.checksSelector - Selector CSS de los checkboxes de temas
+   * @param {string} config.listSelector - Selector CSS de la lista de actividades
+   * @param {string} config.itemSelector - Selector CSS de los items
+   * @param {string} config.articleSel - Selector CSS del artículo
+   * @param {string} config.titleSelector - Selector CSS del título
+   * @param {string} config.metaSelector - Selector CSS de metadatos
+   * @return {Object} Objeto con estado de inicialización y función aplicar
+   */
   const initFiltroTemas = ({
     checksSelector = '#bloque-temas .lista-check input[type="checkbox"]',
     listSelector = ".listado",
@@ -172,7 +198,6 @@
         .normalize("NFD")
         .replace(/\p{Diacritic}/gu, "");
 
-    // Lee temas desde data-temas="acuaticas,adrenalina" o infiere (sin gastro/tesoros)
     const temasDeLi = (li) => {
       const art = li.querySelector(articleSel);
       if (!art) return [];
@@ -183,7 +208,6 @@
           .map((t) => norm(t.trim()))
           .filter(Boolean);
 
-      // Heurística por título + meta
       const texto = [
         li.querySelector(titleSelector)?.textContent,
         li.querySelector(metaSelector)?.textContent,
@@ -211,7 +235,7 @@
       checks.filter((c) => c.checked).map((c) => norm(c.value));
 
     const aplicar = () => {
-      const sel = seleccionados(); // OR: sin selección => no filtra por temas
+      const sel = seleccionados();
       items.forEach((li) => {
         const temas = temasDeLi(li);
         const pasa = sel.length === 0 || temas.some((t) => sel.includes(t));
@@ -219,7 +243,6 @@
         if (!pasa) {
           li.style.display = "none";
         } else if (li.style.display === "none") {
-          // no “forzamos mostrar” si otro filtro ya lo ocultó más tarde
           li.style.display = "";
         }
       });
@@ -237,16 +260,18 @@
   });
 })(window);
 
-/* actividades.js — filtros con reflow elegante SOLO POR TITULO */
-
-/** Normaliza texto (minúsculas + sin acentos). */
 const norm = (s) =>
   (s || "")
     .toLowerCase()
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 
-/** Lee la categoría de la card por su primer <li> en .card-meta. */
+/**
+ * Obtiene la categoría de una card basada en sus metadatos
+ * @method getCategoriaCard
+ * @param {HTMLElement} liEl - Elemento LI de la card
+ * @return {string} Categoría de la card ('musica', 'nieve' o '')
+ */
 const getCategoriaCard = (liEl) => {
   const firstMeta =
     liEl.querySelector(".card-meta li")?.textContent?.trim() || "";
@@ -256,15 +281,13 @@ const getCategoriaCard = (liEl) => {
   return "";
 };
 
-/** Texto indexable SOLO con el título para búsqueda. */
 const getIndexText = (liEl) => {
   const titulo = liEl.querySelector(".card-titulo")?.textContent || "";
   return norm(titulo);
 };
 
 /**
- * Aplica filtros. Oculta/muestra el LI completo (reflow inmediato).
- * Usa una clase "hide-soft" breve para un fade/scale suave.
+ * Aplica filtros. Oculta/muestra el LI completo.
  */
 const applyFilters = (qValue, catValue, items) => {
   let visibles = 0;
@@ -282,11 +305,10 @@ const applyFilters = (qValue, catValue, items) => {
       requestAnimationFrame(() => li.classList.remove("hide-soft"));
     }
 
-    // Ocultar con una pequeña animación
     if (!show && !li.classList.contains("is-hidden")) {
       li.classList.add("hide-soft");
       setTimeout(() => {
-        li.classList.add("is-hidden"); // saca del flujo → reacomoda
+        li.classList.add("is-hidden");
         li.classList.remove("hide-soft");
       }, 160);
     }
@@ -297,7 +319,6 @@ const applyFilters = (qValue, catValue, items) => {
   return visibles;
 };
 
-/** Badge accesible con la cantidad de visibles. */
 const announceResults = (count) => {
   let live = document.getElementById("live-resultado");
   if (!live) {
@@ -315,6 +336,11 @@ const announceResults = (count) => {
 };
 
 /** Init: indexa LIs para búsquedas rápidas y ata eventos. */
+/**
+ * Inicializa el sistema de filtrado de actividades
+ * @method initActividades
+ * @return {void}
+ */
 const initActividades = () => {
   const form = document.getElementById("form-filtros");
   const inputQ = document.getElementById("q");
@@ -323,8 +349,8 @@ const initActividades = () => {
 
   const items = lis.map((li) => ({
     li,
-    idx: getIndexText(li), // SOLO titulo
-    cat: getCategoriaCard(li), // "musica" | "nieve" | ""
+    idx: getIndexText(li),
+    cat: getCategoriaCard(li),
   }));
 
   // FILTRAR (submit)
@@ -355,10 +381,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initActividades();
 });
 
-/* =========================================================================
- * Validación y navegación del buscador de Rutas Argentinas
- * ========================================================================= */
-
 const normalize = (s) =>
   (s || "")
     .toLowerCase()
@@ -384,7 +406,7 @@ const DESTINOS = {
   iguazú: "Misiones.html",
 
   ushuaia: "Ushuaia.html",
-  usuahia: "Usuahia.html", // alias si tu archivo se llama así
+  usuahia: "Usuahia.html",
 };
 
 // Lista de ciudades válidas para ORIGEN (normalizadas).
@@ -406,9 +428,14 @@ const ORIGEN_VALIDOS = new Set([
   "usuahia",
 ]);
 
-// --------- Validaciones de campos ---------
-
 // Letras/espacios básicos
+/**
+ * Valida el formato de una ciudad
+ * @method validateCityFormat
+ * @param {HTMLElement} el - Elemento input a validar
+ * @param {string} label - Etiqueta para mensajes de error
+ * @return {boolean} true si es válido, false si no
+ */
 const validateCityFormat = (el, label) => {
   const value = el.value.trim();
   const re = /^[ a-zA-ZáéíóúÁÉÍÓÚñÑüÜ'.-]+$/;
@@ -452,6 +479,13 @@ const validatePassengers = (el) => {
 };
 
 // Fechas: al menos ida; si hay vuelta, no puede ser anterior a ida
+/**
+ * Valida las fechas de ida y vuelta
+ * @method validateDates
+ * @param {HTMLElement} idaEl - Elemento input de fecha de ida
+ * @param {HTMLElement} vueltaEl - Elemento input de fecha de vuelta
+ * @return {boolean} true si son válidas, false si no
+ */
 const validateDates = (idaEl, vueltaEl) => {
   const ida = idaEl.value ? new Date(idaEl.value) : null;
   const vuelta = vueltaEl.value ? new Date(vueltaEl.value) : null;
@@ -512,5 +546,210 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Redirigir a la ciudad seleccionada
     window.location.href = destinoPage;
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const email = document.getElementById("email");
+  const clave = document.getElementById("clave");
+  const btn = document.getElementById("btn-ingresar"); // <a href="index.html">
+
+  // función para validar formato de email
+  const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((s || "").trim());
+
+  const mark = (el, bad) => {
+    if (!el) return;
+    bad
+      ? el.setAttribute("aria-invalid", "true")
+      : el.removeAttribute("aria-invalid");
+  };
+
+  if (btn) {
+    btn.addEventListener("click", (e) => {
+      const eVal = (email?.value || "").trim();
+      const cVal = (clave?.value || "").trim();
+
+      let msg = "";
+      if (!eVal || !cVal) msg = "Completá email y clave para ingresar.";
+      else if (!isEmail(eVal))
+        msg = "Ingresá un email válido (ej.: usuario@dominio.com).";
+
+      if (msg) {
+        e.preventDefault();
+        alert(msg);
+        mark(email, !eVal || !isEmail(eVal));
+        mark(clave, !cVal);
+        (!eVal || !isEmail(eVal) ? email : clave)?.focus();
+      }
+    });
+  }
+
+  const btnFacebook = document.querySelector(".btn-facebook");
+  const btnGoogle = document.querySelector(".btn-google");
+
+  if (btnFacebook) {
+    btnFacebook.addEventListener("click", () => {
+      window.open("https://www.facebook.com/", "_blank");
+    });
+  }
+
+  if (btnGoogle) {
+    btnGoogle.addEventListener("click", () => {
+      window.open("https://accounts.google.com/", "_blank");
+    });
+  }
+});
+
+// Función para el formulario de contacto
+((global) => {
+  const initFormularioContacto = () => {
+    const form = document.getElementById("form-contacto");
+    const btn = document.getElementById("btn-enviar");
+    const aviso = document.getElementById("aviso");
+
+    if (!form || !btn || !aviso) return { ok: false };
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = "enviando...";
+
+      setTimeout(function () {
+        form.reset();
+        btn.disabled = false;
+        btn.textContent = original;
+
+        aviso.hidden = false;
+        aviso.textContent = "mensaje enviado";
+
+        setTimeout(function () {
+          aviso.hidden = true;
+        }, 3000);
+      }, 400);
+    });
+    return { ok: true };
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    global.Funciones = global.Funciones || {};
+    global.Funciones.initFormularioContacto = initFormularioContacto;
+    initFormularioContacto();
+  });
+})(window);
+
+// Función para el chat
+((global) => {
+  const initChat = () => {
+    const btnChat = document.getElementById("btn-abrir-chat");
+    if (!btnChat) return { ok: false };
+
+    btnChat.addEventListener("click", function () {
+      window.open("https://chat.openai.com/", "_blank");
+    });
+
+    return { ok: true };
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    global.Funciones = global.Funciones || {};
+    global.Funciones.initChat = initChat;
+    initChat();
+  });
+})(window);
+
+// Función para el estimador de espera
+((global) => {
+  const initEstimadorEspera = () => {
+    const selDia = document.getElementById("dia");
+    const selFranja = document.getElementById("franja");
+    const btn = document.getElementById("btn-estimar");
+    const salida = document.getElementById("resultado");
+
+    if (!selDia || !selFranja || !btn || !salida) return { ok: false };
+
+    const tabla = {
+      laboral: { maniana: 0.6, tarde: 1.4, noche: 0.8 },
+      fin: { maniana: 0.9, tarde: 1.8, noche: 1.1 },
+    };
+    function estimar() {
+      const d = selDia.value;
+      const f = selFranja.value;
+      const horas = tabla[d] && tabla[d][f] ? tabla[d][f] : 1.0;
+      salida.textContent = "Espera estimada: " + horas.toFixed(1) + " h";
+    }
+
+    btn.addEventListener("click", estimar);
+    selDia.addEventListener("change", estimar);
+    selFranja.addEventListener("change", estimar);
+
+    return { ok: true };
+  };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    global.Funciones = global.Funciones || {};
+    global.Funciones.initEstimadorEspera = initEstimadorEspera;
+    initEstimadorEspera();
+  });
+})(window);
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Tarifas por noche (USD)
+  const tarifa = { eco: 30, std: 46, prm: 69 };
+
+  const form = document.getElementById("form-reserva");
+  const btnCalcular = document.getElementById("btn-calcular");
+  const subtotalEl = document.getElementById("subtotal");
+  const msgEl = document.getElementById("msg");
+
+  if (!form || !btnCalcular || !subtotalEl || !msgEl) return;
+
+  // --- Función para calcular diferencia de días ---
+  function diferenciaDias(desde, hasta) {
+    const t1 = new Date(desde).getTime();
+    const t2 = new Date(hasta).getTime();
+    if (isNaN(t1) || isNaN(t2)) return 0;
+    const diff = Math.ceil((t2 - t1) / (1000 * 60 * 60 * 24));
+    return diff > 0 ? diff : 0;
+  }
+
+  // --- Calcular subtotal ---
+  btnCalcular.addEventListener("click", () => {
+    const desde = form["fecha-desde"].value;
+    const hasta = form["fecha-hasta"].value;
+    const personas = Number(form["cantidad"].value);
+    const cat = form["categoria"].value;
+
+    if (!desde || !hasta || !personas || personas <= 0) {
+      msgEl.textContent = "Completá fechas válidas y cantidad de personas.";
+      subtotalEl.textContent = "$0";
+      return;
+    }
+
+    const noches = diferenciaDias(desde, hasta);
+    if (noches === 0) {
+      msgEl.textContent = 'La fecha "Hasta" debe ser posterior a "Desde".';
+      subtotalEl.textContent = "$0";
+      return;
+    }
+
+    const total = (tarifa[cat] || 0) * noches * personas;
+
+    subtotalEl.textContent = new Intl.NumberFormat("es-AR", {
+      style: "currency",
+      currency: "ARS",
+    }).format(total);
+
+    msgEl.textContent = "";
+  });
+
+  // --- Confirmar reserva ---
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (subtotalEl.textContent === "$0") {
+      msgEl.textContent = "Calculá el subtotal antes de confirmar.";
+      return;
+    }
+    msgEl.textContent = "Reserva registrada.";
   });
 });

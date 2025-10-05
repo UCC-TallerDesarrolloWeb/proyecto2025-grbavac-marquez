@@ -365,7 +365,7 @@ select:focus {
 
 /* utilidades */
 .visually-hidden {
-  position: absolute !important;
+  position: absolute;
   clip: rect(1px, 1px, 1px, 1px);
   padding: 0;
   border: 0;

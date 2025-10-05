@@ -2,7 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="author" content="Grbavac - Marquez" />
+    <meta name="author" content="Pablo Marquez Capilla - Darko Grbavac" />
     <meta
       name="description"
       content="Guía y reserva para Buenos Aires: descripción, actividades, qué incluye y cotizador."
@@ -20,7 +20,7 @@
       <header class="encabezado" id="encabezado">
         <div class="brand">
           <img
-            src="Imagen/Logo-Rutas-Argentinas.jpeg.jpg"
+            src="Imagenes/Logo-Rutas-Argentinas.jpeg.jpg"
             alt="Rutas Argentinas logo"
             class="logo"
           />
@@ -59,7 +59,7 @@
           <article class="col col-left">
             <figure class="media">
               <img
-                src="Imagen/turismo-BuenosAires.jpg"
+                src="Imagenes/turismo-BuenosAires.jpg"
                 alt="Obelisco y Av. 9 de Julio en Buenos Aires"
               />
               <figcaption>Obelisco y Av. 9 de Julio</figcaption>
@@ -67,7 +67,7 @@
 
             <div class="highlights">
               <div class="item">
-                <img src="Imagen/cancelacion-png.webp" alt="" class="icon" />
+                <img src="Imagenes/cancelacion-png.webp" alt="" class="icon" />
                 <div>
                   <h3 class="h-item">Cancelación gratis</h3>
                   <p>
@@ -77,21 +77,21 @@
                 </div>
               </div>
               <div class="item">
-                <img src="Imagen/salud.png" alt="" class="icon" />
+                <img src="Imagenes/salud.png" alt="" class="icon" />
                 <div>
                   <h3 class="h-item">Medidas sanitarias</h3>
                   <p>Protocolos de higiene y seguridad vigentes.</p>
                 </div>
               </div>
               <div class="item">
-                <img src="Imagen/ticket.png" alt="" class="icon" />
+                <img src="Imagenes/ticket.png" alt="" class="icon" />
                 <div>
                   <h3 class="h-item">Ticket móvil</h3>
                   <p>Usá tu celular, no hace falta imprimir.</p>
                 </div>
               </div>
               <div class="item">
-                <img src="Imagen/reloj.jpg" alt="" class="icon" />
+                <img src="Imagenes/reloj.jpg" alt="" class="icon" />
                 <div>
                   <h3 class="h-item">Duración 3.5 horas</h3>
                   <p>Verificá horarios disponibles antes de reservar.</p>
@@ -244,60 +244,6 @@
         </p>
       </footer>
     </div>
-
-    <script>
-      // Tarifas por noche (ARS) para Buenos Aires
-      const tarifa = { eco: 38000, std: 54000, prm: 82000 };
-
-      const form = document.getElementById("form-reserva");
-      const btnCalcular = document.getElementById("btn-calcular");
-      const subtotalEl = document.getElementById("subtotal");
-      const msgEl = document.getElementById("msg");
-
-      function diferenciaDias(desde, hasta) {
-        const t1 = new Date(desde).getTime();
-        const t2 = new Date(hasta).getTime();
-        if (isNaN(t1) || isNaN(t2)) return 0;
-        const diff = Math.ceil((t2 - t1) / (1000 * 60 * 60 * 24));
-        return diff > 0 ? diff : 0;
-      }
-
-      btnCalcular.addEventListener("click", () => {
-        const desde = form["fecha-desde"].value;
-        const hasta = form["fecha-hasta"].value;
-        const personas = Number(form["cantidad"].value);
-        const cat = form["categoria"].value;
-
-        if (!desde || !hasta || !personas || personas <= 0) {
-          msgEl.textContent = "Completá fechas válidas y cantidad de personas.";
-          subtotalEl.textContent = "$0";
-          return;
-        }
-
-        const noches = diferenciaDias(desde, hasta);
-        if (noches === 0) {
-          msgEl.textContent = 'La fecha "Hasta" debe ser posterior a "Desde".';
-          subtotalEl.textContent = "$0";
-          return;
-        }
-
-        const total = (tarifa[cat] || 0) * noches * personas;
-
-        subtotalEl.textContent = new Intl.NumberFormat("es-AR", {
-          style: "currency",
-          currency: "ARS",
-        }).format(total);
-        msgEl.textContent = "";
-      });
-
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (subtotalEl.textContent === "$0") {
-          msgEl.textContent = "Calculá el subtotal antes de confirmar.";
-          return;
-        }
-        msgEl.textContent = "Reserva registrada (demo).";
-      });
-    </script>
+    <script src="funciones.js" defer></script>
   </body>
 </html>
