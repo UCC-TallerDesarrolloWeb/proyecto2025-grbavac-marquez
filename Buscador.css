@@ -254,7 +254,14 @@ select:focus {
 }
 
 .resultados-encabezado + .listado {
-  margin-top: 0 !important;
+  /* se aumenta la especificidad usando .col-der más abajo; reemplazado por la regla específica
+     para evitar el uso de !important y mantener el mismo efecto visual en el flujo */
+  margin-top: 0;
+}
+
+/* Regla más específica para garantizar que la separación se elimine sin !important */
+.col-der .resultados-encabezado + .listado {
+  margin-top: 0;
 }
 .card-link {
   text-decoration: none;
