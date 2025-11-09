@@ -345,6 +345,10 @@ const initActividades = () => {
   const form = document.getElementById("form-filtros");
   const inputQ = document.getElementById("q");
   const selectCat = document.getElementById("categoria");
+  // Solo inicializar si estamos en la página de actividades (existe el listado de cards)
+  const cardsContainer = document.querySelector("#actividades .cards");
+  if (!cardsContainer) return; // no es la página de actividades, salir
+
   const lis = [...document.querySelectorAll("#actividades .cards > li")];
 
   const items = lis.map((li) => ({

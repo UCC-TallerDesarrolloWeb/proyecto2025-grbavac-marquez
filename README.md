@@ -2,6 +2,19 @@
 
 Estructura de Proyecto Taller de Desarrollo Web - 2025
 
+### Índice
+
+- [Requisitos del Primer Parcial](#requisitos-del-primer-parcial)
+- [Requisitos del Segundo Parcial](#requisitos-del-segundo-parcial)
+- [Requisitos del FINAL](#requisitos-del-final)
+- [Proyecto Turismo 2025](#proyecto-turismo-2025)
+- [Descripción](#descripción)
+- [Autores](#autores)
+- [Links](#links)
+- [Contenido del sitio](#contenido-del-sitio)
+- [Tecnologías usadas](#tecnologías-usadas)
+- [Tabla de tecnologías](#tabla-de-tecnologías)
+
 ## Requisitos del Primer Parcial
 
 ### Sobre el Sketch
