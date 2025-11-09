@@ -396,3 +396,15 @@ select:focus {
     text-align: left;
   }
 }
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+.titulo,
+.brand {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+}
