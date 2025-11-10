@@ -1,0 +1,44 @@
+// Colors
+$primary-color: #d81b60;  // The accent color from your CSS variables
+$accent-color: $primary-color;  // Using the same color for consistency
+$secondary-color: #6b7280;  // Secondary text color
+$text-color: #222222;
+$text-muted: #6b7280;
+$surface-color: #ffffff;
+$bg-color: #f7f8fa;
+$background-color: #ffffff;  // Base background color
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Border radius
+$radius: 16px;
+$radius-lg: 24px;
+$radius-sm: 8px;
+$radius-round: 999px;
+
+// Shadows
+$shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+$shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+// Layout
+$max-width: 1200px;
+$container-padding: 16px;
+
+// CSS Variables (to maintain compatibility with existing CSS)
+:root {
+  --bg: #{$bg-color};
+  --text: #{$text-color};
+  --muted: #{$text-muted};
+  --surface: #{$surface-color};
+  --primary: #{$primary-color};
+  --accent: #{$primary-color};
+  --radius-lg: #{$radius-lg};
+  --radius: #{$radius};
+  --shadow: #{$shadow};
+  --shadow-sm: #{$shadow-sm};
+}
