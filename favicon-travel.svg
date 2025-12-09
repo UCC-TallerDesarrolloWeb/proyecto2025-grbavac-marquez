@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="favicon rutas argentinas">
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0" stop-color="#06b6d4" />
+      <stop offset="1" stop-color="#0ea5e9" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="url(#g2)" />
+
+  <!-- Circle background for icon -->
+  <circle cx="32" cy="32" r="20" fill="#ffffff22" />
+
+  <!-- Simple suitcase -->
+  <g transform="translate(18,22)">
+    <rect x="2" y="6" width="28" height="18" rx="3" fill="#fff" />
+    <rect x="8" y="0" width="12" height="8" rx="2" fill="#fff" />
+    <rect x="2" y="12" width="28" height="4" fill="#e6f5ff" />
+    <rect x="2" y="6" width="4" height="18" rx="2" fill="#e6f5ff" />
+    <rect x="26" y="6" width="4" height="18" rx="2" fill="#e6f5ff" />
+  </g>
+
+  <!-- Small airplane silhouette (top-right) -->
+  <path d="M44 16 L52 12 L54 14 L48 18 L54 22 L52 24 L44 20 L38 22 L36 20 L40 18 L36 16 L38 14 Z" fill="#fff" />
+</svg>

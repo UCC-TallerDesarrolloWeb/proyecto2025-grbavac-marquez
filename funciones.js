@@ -208,14 +208,18 @@
           .map((t) => norm(t.trim()))
           .filter(Boolean);
 
-      const texto = [
+      // Construir texto a partir de título, meta y badge (si existe)
+      const parts = [
         li.querySelector(titleSelector)?.textContent,
         li.querySelector(metaSelector)?.textContent,
-      ]
-        .map(norm)
-        .join(" ");
+        li.querySelector(".badge")?.textContent,
+      ].map(norm);
+
+      const texto = parts.filter(Boolean).join(" ");
 
       const temas = new Set();
+
+      // detectar temas por palabras clave
       if (/(kayak|acuatic|surf|rafting|buceo|snorkel)/.test(texto))
         temas.add("acuaticas");
       if (/(ski|snowboard|trekking|adrenalina|parapente|tirolesa)/.test(texto))
@@ -228,6 +232,11 @@
         temas.add("naturaleza");
       if (/(arte|grafiti|graffiti|concierto|museo|cultural)/.test(texto))
         temas.add("arte");
+
+      // Si el badge contiene la palabra 'actividad', añadir 'actividades'
+      const badge = norm(li.querySelector(".badge")?.textContent);
+      if (badge && badge.includes("actividad")) temas.add("actividades");
+
       return Array.from(temas);
     };
 

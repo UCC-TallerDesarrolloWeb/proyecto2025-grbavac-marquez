@@ -1,32 +1,60 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
+import assetImg from "@/assets/travel-asset.svg";
+
+const validateEmail = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+const validatePassword = (v) => v.length >= 6;
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  })
+    email: "",
+    password: "",
+  });
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('Form submitted:', formData)
-  }
+    e.preventDefault();
+    // final validation
+    const eEmail = !validateEmail(formData.email) ? "Email inválido" : "";
+    const ePass = !validatePassword(formData.password)
+      ? "La clave debe tener al menos 6 caracteres"
+      : "";
+    setErrors({ email: eEmail, password: ePass });
+    if (!eEmail && !ePass) {
+      // guardar ejemplo en localStorage
+      try {
+        localStorage.setItem("raf_user_email", formData.email);
+      } catch (e) {}
+      console.log("Form submitted:", formData);
+      alert("Registro simulado: " + formData.email);
+    }
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // realtime validations
+    if (name === "email")
+      setErrors((prev) => ({
+        ...prev,
+        email: validateEmail(value) ? "" : "Email inválido",
+      }));
+    if (name === "password")
+      setErrors((prev) => ({
+        ...prev,
+        password: validatePassword(value)
+          ? ""
+          : "La clave debe tener al menos 6 caracteres",
+      }));
+  };
 
   return (
     <>
       <div id="fondo">
-        <img
-          src="/images/Lago_Ushuaia_LOGIN.webp"
-          alt="lago y montañas en argentina"
-        />
+        <img src="/travel-public.svg" alt="lago y montañas en argentina" />
       </div>
 
       <div id="contenedor">
@@ -51,7 +79,7 @@ export default function Register() {
               <header className="modal-encabezado">
                 <img
                   id="logo-modal"
-                  src="/images/Logo-Rutas-Argentinas.jpeg.jpg"
+                  src={assetImg}
                   alt="logotipo rutas argentinas"
                 />
                 <h1 id="tit-registro">registro</h1>
@@ -79,47 +107,33 @@ export default function Register() {
                 autoComplete="on"
                 noValidate
               >
-                <div className="campo">
-                  <label htmlFor="email">Tu email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Tu@mail.com"
-                    size="28"
-                    maxLength="40"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
-                </div>
+                <Input
+                  id="email"
+                  name="email"
+                  label="Tu email"
+                  type="email"
+                  placeholder="Tu@mail.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  error={errors.email}
+                />
 
-                <div className="campo">
-                  <label htmlFor="password">tu clave</label>
-                  <div className="campo-password">
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      placeholder=""
-                      size="28"
-                      maxLength="30"
-                      required
-                      value={formData.password}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
+                <Input
+                  id="password"
+                  name="password"
+                  label="tu clave"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  error={errors.password}
+                />
 
                 <div className="acciones">
-                  <Link
-                    to="/"
-                    id="btn-ingresar"
-                    className="btn btn-primary btn-lg"
-                    title="Ir al inicio"
-                  >
+                  <Button type="submit" className="btn-primary btn-lg">
                     Ingresar
-                  </Link>
+                  </Button>
                 </div>
               </form>
             </div>
@@ -131,7 +145,7 @@ export default function Register() {
             <section className="marca" aria-label="marca">
               <img
                 className="marca-logo"
-                src="/images/Logo-Rutas-Argentinas.jpeg.jpg"
+                src={assetImg}
                 alt="logo rutas argentinas"
               />
               <p className="marca-nombre">rutas argentinas</p>
@@ -185,5 +199,5 @@ export default function Register() {
         </footer>
       </div>
     </>
-  )
+  );
 }
