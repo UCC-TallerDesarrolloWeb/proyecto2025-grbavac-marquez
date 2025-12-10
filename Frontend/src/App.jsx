@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./styles/main.scss";
+import "@/styles/main.scss";
 import Layout from "@/components/Layout";
 import Home from "@/components/Home";
 import BuenosAires from "@/components/cities/BuenosAires";
