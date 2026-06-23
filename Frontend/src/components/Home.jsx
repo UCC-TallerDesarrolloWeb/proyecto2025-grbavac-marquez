@@ -31,7 +31,7 @@ export default function Home() {
           <Link to="/">
             <img
               id="logo"
-              src="/Imagenes/Logo-Rutas-Argentinas.jpeg.jpg"
+              src="/imagenes/Logo-Rutas-Argentinas.jpeg.jpg"
               alt="Rutas Argentinas"
             />
           </Link>
@@ -53,7 +53,7 @@ export default function Home() {
           <div className="hero-inner">
             <img
               id="hero-img"
-              src="/Imagenes/Perito_Moreno_Glacier.jpg"
+              src="/imagenes/Perito_Moreno_Glacier.jpg"
               alt="paisaje del glaciar perito moreno en santa cruz, argentina"
             />
 
@@ -133,7 +133,7 @@ export default function Home() {
           <div className="lista-planes">
             <article className="card" id="card-tucuman">
               <Link className="card-link" to="/ciudades/tucuman" title="Ver planes en Tucumán">
-                <img src="/Imagenes/Tucuman_Foto_home.webp" alt="tucumán argentina" />
+                <img src="/imagenes/Tucuman_Foto_home.webp" alt="tucumán argentina" />
                 <div className="card-texto">
                   <h3>tucumán, argentina</h3>
                   <p>pasajes · hoteles · resorts</p>
@@ -143,7 +143,7 @@ export default function Home() {
 
             <article className="card" id="card-buenos-aires">
               <Link className="card-link" to="/ciudades/buenos-aires" title="Ver planes en Buenos Aires">
-                <img src="/Imagenes/Buenos_Aires_Foto_home.jpeg.jpg" alt="buenos aires argentina" />
+                <img src="/imagenes/Buenos_Aires_Foto_home.jpeg.jpg" alt="buenos aires argentina" />
                 <div className="card-texto">
                   <h3>buenos aires, argentina</h3>
                   <p>pasajes · hoteles · resorts</p>
@@ -153,7 +153,7 @@ export default function Home() {
 
             <article className="card" id="card-salta">
               <Link className="card-link" to="/ciudades/salta" title="Ver planes en Salta">
-                <img src="/Imagenes/Salta_Foto_home.jpeg.jpg" alt="salta argentina" />
+                <img src="/imagenes/Salta_Foto_home.jpeg.jpg" alt="salta argentina" />
                 <div className="card-texto">
                   <h3>salta, argentina</h3>
                   <p>pasajes · hoteles · resorts</p>
@@ -163,7 +163,7 @@ export default function Home() {
 
             <article className="card" id="card-cordoba">
               <Link className="card-link" to="/ciudades/cordoba" title="Ver planes en Córdoba">
-                <img src="/Imagenes/Cordoba_Foto_home.jpg" alt="córdoba argentina" />
+                <img src="/imagenes/Cordoba_Foto_home.jpg" alt="córdoba argentina" />
                 <div className="card-texto">
                   <h3>córdoba, argentina</h3>
                   <p>pasajes · hoteles · resorts</p>
@@ -173,7 +173,7 @@ export default function Home() {
 
             <article className="card" id="card-misiones">
               <Link className="card-link" to="/ciudades/misiones" title="Ver planes en Misiones">
-                <img src="/Imagenes/Misiones_Foto_home.jpg" alt="misiones argentina" />
+                <img src="/imagenes/Misiones_Foto_home.jpg" alt="misiones argentina" />
                 <div className="card-texto">
                   <h3>misiones, argentina</h3>
                   <p>pasajes · hoteles · resorts</p>
@@ -183,7 +183,7 @@ export default function Home() {
 
             <article className="card" id="card-ushuaia">
               <Link className="card-link" to="/ciudades/ushuaia" title="Ver planes en Ushuaia">
-                <img src="/Imagenes/Ushuaia_Foto_home.jpeg.jpg" alt="ushuaia argentina" />
+                <img src="/imagenes/Ushuaia_Foto_home.jpeg.jpg" alt="ushuaia argentina" />
                 <div className="card-texto">
                   <h3>ushuaia, argentina</h3>
                   <p>pasajes · hoteles · resorts</p>
@@ -208,7 +208,7 @@ export default function Home() {
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
               <p className="t-author">– Lorenzo Rossi Bossio</p>
-              <img className="t-photo" src="/Imagenes/Comentarios-1.jpeg" alt="Paisaje de lagos y montañas en la Patagonia" />
+              <img className="t-photo" src="/imagenes/Comentarios-1.jpeg" alt="Paisaje de lagos y montañas en la Patagonia" />
             </article>
 
             <article className="t-card">
@@ -218,7 +218,7 @@ export default function Home() {
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
               <p className="t-author">– Andrés Romanutti</p>
-              <img className="t-photo" src="/Imagenes/Comentario3.jpg" alt="Auroras en el cielo nocturno" />
+              <img className="t-photo" src="/imagenes/Comentario3.jpg" alt="Auroras en el cielo nocturno" />
             </article>
 
             <article className="t-card">
@@ -228,7 +228,7 @@ export default function Home() {
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
               <p className="t-author">– Federico Esteban Almada "El Chino"</p>
-              <img className="t-photo" src="/Imagenes/Comentario2.jpg" alt="Interior de glaciar con turista" />
+              <img className="t-photo" src="/imagenes/Comentario2.jpg" alt="Interior de glaciar con turista" />
             </article>
 
             <article className="t-card">
@@ -238,7 +238,7 @@ export default function Home() {
                 <span>★</span><span>★</span><span>★</span>
               </div>
               <p className="t-author">– Octavio Del Fabro</p>
-              <img className="t-photo" src="/Imagenes/Comentario4.jpeg" alt="Interior de glaciar con turista" />
+              <img className="t-photo" src="/imagenes/Comentario4.jpeg" alt="Interior de glaciar con turista" />
             </article>
 
             <article className="t-card">
@@ -248,7 +248,7 @@ export default function Home() {
                 <span>★</span><span>★</span><span>★</span>
               </div>
               <p className="t-author">– Juan Gil</p>
-              <img className="t-photo" src="/Imagenes/Comentario5.jpeg" alt="Interior de glaciar con turista" />
+              <img className="t-photo" src="/imagenes/Comentario5.jpeg" alt="Interior de glaciar con turista" />
             </article>
 
             <article className="t-card">
@@ -258,7 +258,7 @@ export default function Home() {
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
               <p className="t-author">– Valentina López</p>
-              <img className="t-photo" src="/Imagenes/Comentario6.jpg" alt="Interior de glaciar con turista" />
+              <img className="t-photo" src="/imagenes/Comentario6.jpg" alt="Interior de glaciar con turista" />
             </article>
           </div>
         </section>
@@ -268,7 +268,7 @@ export default function Home() {
       <footer id="pie" className="pie-hero">
         <div className="pie-inner">
           <div className="pie-brand">
-            <img src="/Imagenes/Logo-Rutas-Argentinas.jpeg.jpg" alt="Rutas Argentinas" className="pie-logo" />
+            <img src="/imagenes/Logo-Rutas-Argentinas.jpeg.jpg" alt="Rutas Argentinas" className="pie-logo" />
             <h3 className="pie-title">
               Rutas Argentinas
               <span className="pie-slogan">TURISMO POR EL PAÍS</span>

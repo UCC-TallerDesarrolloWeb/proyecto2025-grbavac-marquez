@@ -1,0 +1,13 @@
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Local/generated dependencies
+node_modules/
+dist/
+build/
+
+# Local reference material, not part of the project deliverable
+Sketch/*Herramientas.pdf
