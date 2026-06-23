@@ -182,6 +182,10 @@ header.encabezado {
   border-radius: 8px;
 }
 
+.map-wrapper iframe {
+  border: 0;
+}
+
 /* ===== Aside Booking (ID + CLASE) ===== */
 .col-right {
   position: sticky;

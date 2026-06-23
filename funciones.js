@@ -419,7 +419,7 @@ const DESTINOS = {
   iguazú: "Misiones.html",
 
   ushuaia: "Ushuaia.html",
-  usuahia: "Usuahia.html",
+  usuahia: "Ushuaia.html",
 };
 
 // Lista de ciudades válidas para ORIGEN (normalizadas).
