@@ -622,13 +622,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!form || !btn || !aviso) return { ok: false };
 
-    form.addEventListener("submit", function (e) {
+    form.addEventListener("submit", (e) => {
       e.preventDefault();
       const original = btn.textContent;
       btn.disabled = true;
       btn.textContent = "enviando...";
 
-      setTimeout(function () {
+      setTimeout(() => {
         form.reset();
         btn.disabled = false;
         btn.textContent = original;
@@ -636,7 +636,7 @@ document.addEventListener("DOMContentLoaded", () => {
         aviso.hidden = false;
         aviso.textContent = "mensaje enviado";
 
-        setTimeout(function () {
+        setTimeout(() => {
           aviso.hidden = true;
         }, 3000);
       }, 400);
@@ -657,7 +657,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnChat = document.getElementById("btn-abrir-chat");
     if (!btnChat) return { ok: false };
 
-    btnChat.addEventListener("click", function () {
+    btnChat.addEventListener("click", () => {
       window.open("https://chat.openai.com/", "_blank");
     });
 
@@ -685,12 +685,12 @@ document.addEventListener("DOMContentLoaded", () => {
       laboral: { maniana: 0.6, tarde: 1.4, noche: 0.8 },
       fin: { maniana: 0.9, tarde: 1.8, noche: 1.1 },
     };
-    function estimar() {
+    const estimar = () => {
       const d = selDia.value;
       const f = selFranja.value;
       const horas = tabla[d] && tabla[d][f] ? tabla[d][f] : 1.0;
       salida.textContent = "Espera estimada: " + horas.toFixed(1) + " h";
-    }
+    };
 
     btn.addEventListener("click", estimar);
     selDia.addEventListener("change", estimar);
@@ -706,7 +706,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 })(window);
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
   // Tarifas por noche (USD)
   const tarifa = { eco: 30, std: 46, prm: 69 };
 
@@ -718,13 +718,13 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!form || !btnCalcular || !subtotalEl || !msgEl) return;
 
   // --- Función para calcular diferencia de días ---
-  function diferenciaDias(desde, hasta) {
+  const diferenciaDias = (desde, hasta) => {
     const t1 = new Date(desde).getTime();
     const t2 = new Date(hasta).getTime();
     if (isNaN(t1) || isNaN(t2)) return 0;
     const diff = Math.ceil((t2 - t1) / (1000 * 60 * 60 * 24));
     return diff > 0 ? diff : 0;
-  }
+  };
 
   // --- Calcular subtotal ---
   btnCalcular.addEventListener("click", () => {
