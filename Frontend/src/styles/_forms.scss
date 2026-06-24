@@ -1,92 +1,202 @@
-// Estilos para las páginas de contacto y registro
-.contact-page,
-.register-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: $primary-color;
-  }
+.page-contacto {
+  max-width: var(--max-width);
+  padding: 0 16px 48px;
 }
 
-.contact-content,
-.register-content {
+.page-contacto .section {
+  padding-top: 34px;
+}
+
+.page-contacto .intro-inner {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 26px;
+  text-align: center;
+}
+
+.page-contacto #tit-intro {
+  color: var(--text);
+  font-size: 1.35rem;
+  margin-bottom: 16px;
+}
+
+.page-contacto .intro-inner p {
+  color: var(--text);
+}
+
+.page-contacto .layout {
+  align-items: start;
   display: grid;
-  gap: 2rem;
-  
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 2fr;
-  }
+  gap: 24px;
+  grid-template-columns: 330px minmax(0, 1fr);
+  padding-top: 16px;
 }
 
-.contact-info,
-.register-info {
-  h2 {
-    color: $accent-color;
-    margin-bottom: 1rem;
-  }
-
-  ul {
-    list-style: none;
-    margin-top: 1rem;
-    
-    li {
-      padding: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      
-      &:before {
-        content: "✓";
-        color: $accent-color;
-        margin-right: 0.5rem;
-      }
-    }
-  }
+.page-contacto #herramientas {
+  padding-top: 18px;
 }
 
-.contact-details {
-  margin-top: 1.5rem;
-
-  .contact-item {
-    margin-bottom: 1rem;
-    
-    strong {
-      display: block;
-      color: $accent-color;
-    }
-    
-    p {
-      margin-top: 0.25rem;
-    }
-  }
+.page-contacto #tit-herramientas {
+  color: var(--text);
+  font-size: 1.35rem;
+  margin-bottom: 22px;
 }
 
-.contact-form,
-.register-form {
+.page-contacto .widget {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 18px;
+}
+
+.page-contacto .widget-titulo {
+  font-size: 0.98rem;
+  margin-bottom: 14px;
+}
+
+.page-contacto .widget .campo {
+  margin-bottom: 12px;
+}
+
+.page-contacto .widget .campo label,
+.page-contacto #form-contacto .campo label {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.page-contacto .acciones {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
-  .login-link {
-    text-align: center;
-    margin-top: 1rem;
-    
-    a {
-      color: $accent-color;
-      text-decoration: none;
-      
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
+  gap: 8px;
+  margin: 10px 0;
 }
 
-// Estilos específicos para campos del formulario
-textarea {
-  resize: vertical;
-  min-height: 100px;
+.page-contacto .acciones button,
+.page-contacto #btn-enviar {
+  background: #f59e0b;
+  border: 0;
+  border-radius: 8px;
+  color: #111827;
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 10px 18px;
+}
+
+.page-contacto #btn-estimar {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.page-contacto #btn-abrir-chat {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  color: #111827;
+}
+
+.page-contacto .resultado {
+  color: var(--muted);
+}
+
+.page-contacto #canales {
+  display: grid;
+  gap: 18px;
+}
+
+.page-contacto .canal {
+  align-items: start;
+  border-radius: 14px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 130px minmax(0, 1fr);
+  padding: 20px;
+}
+
+.page-contacto .canal .card-media img {
+  height: 100px;
+  object-fit: contain;
+  width: 120px;
+}
+
+.page-contacto #canal-formulario .card-media img,
+.page-contacto #canal-telefonos .card-media img,
+.page-contacto #canal-alerta .card-media img {
+  margin-top: 90px;
+}
+
+.page-contacto .card-titulo {
+  color: var(--text);
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+}
+
+.page-contacto .card-body > p {
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.page-contacto #form-contacto {
+  display: grid;
+  gap: 14px;
+}
+
+.page-contacto #form-contacto textarea {
+  min-height: 124px;
+}
+
+.page-contacto .aviso {
+  color: #047857;
+  font-weight: 700;
+}
+
+.page-contacto .tabla-wrap {
+  overflow-x: auto;
+}
+
+.page-contacto .tabla {
+  border-collapse: collapse;
+  min-width: 560px;
+  width: 100%;
+}
+
+.page-contacto .tabla caption {
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.page-contacto .tabla th,
+.page-contacto .tabla td {
+  border-bottom: 1px solid var(--line);
+  padding: 10px;
+  text-align: left;
+}
+
+.page-contacto .tabla th {
+  background: #f8fafc;
+}
+
+.page-contacto .lista {
+  margin-left: 18px;
+}
+
+.page-contacto .lista li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 980px) {
+  .page-contacto .layout,
+  .page-contacto .canal {
+    grid-template-columns: 1fr;
+  }
+
+  .page-contacto #canal-formulario .card-media img,
+  .page-contacto #canal-telefonos .card-media img,
+  .page-contacto #canal-alerta .card-media img {
+    margin-top: 0;
+  }
 }

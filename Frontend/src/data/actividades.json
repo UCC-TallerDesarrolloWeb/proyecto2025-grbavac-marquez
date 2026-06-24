@@ -1,0 +1,114 @@
+[
+  {
+    "slug": "cosquin-rock",
+    "nombre": "Cosquín Rock",
+    "descripcion": "festival de música en Córdoba",
+    "ciudad": "Córdoba",
+    "categoria": "musica",
+    "imagen": "Cosquin_Rock_Actividades.png",
+    "alt": "afiche del festival cosquín rock",
+    "meta": ["Música · Festival", "2 días"],
+    "url": "https://cosquinrock.net/",
+    "horarios": [
+      { "dia": 2, "hora-inicio": "16:00", "hora-fin": "23:30" }
+    ]
+  },
+  {
+    "slug": "lollapalooza",
+    "nombre": "Lollapalooza",
+    "descripcion": "festival musical en Buenos Aires",
+    "ciudad": "Buenos Aires",
+    "categoria": "musica",
+    "imagen": "Lollapalooza_Actividades.jpg",
+    "alt": "afiche lollapalooza buenos aires",
+    "meta": ["Música · Festival", "3 días"],
+    "url": "https://www.allaccess.com.ar/event/lollapalooza-2026-venta-general",
+    "horarios": [
+      { "dia": 5, "hora-inicio": "12:00", "hora-fin": "23:30" }
+    ]
+  },
+  {
+    "slug": "bad-bunny",
+    "nombre": "Bad Bunny",
+    "descripcion": "concierto en estadio",
+    "ciudad": "Buenos Aires",
+    "categoria": "musica",
+    "imagen": "Bad_Bunny_Actividades.jpg_large",
+    "alt": "concierto de bad bunny en buenos aires",
+    "meta": ["Música · Concierto", "1 noche"],
+    "url": "https://www.allaccess.com.ar/event/bad-bunny",
+    "horarios": [
+      { "dia": 6, "hora-inicio": "21:00", "hora-fin": "23:30" }
+    ]
+  },
+  {
+    "slug": "ruta-del-vino",
+    "nombre": "Ruta del vino",
+    "descripcion": "enoturismo y gastronomía regional",
+    "ciudad": "Mendoza",
+    "categoria": "turismo",
+    "imagen": "Ruta_Del_Vino_Actividades.jpg",
+    "alt": "viñedos en mendoza",
+    "meta": ["Turismo · Gastronomía"],
+    "url": "https://www.wanderwine.tur.ar/tour/ruta-del-vino-mendoza/",
+    "horarios": [
+      { "dia": 3, "hora-inicio": "10:00", "hora-fin": "17:00" }
+    ]
+  },
+  {
+    "slug": "snowboard-ski",
+    "nombre": "Snowboard / Ski",
+    "descripcion": "clases y alquiler de nieve",
+    "ciudad": "Bariloche",
+    "categoria": "nieve",
+    "imagen": "Clases_Snow_Actividades.jpg",
+    "alt": "snowboard en centro de ski",
+    "meta": ["Nieve · Alquiler"],
+    "url": "https://verticalskisnowboard.com/",
+    "horarios": [
+      { "dia": 4, "hora-inicio": "09:00", "hora-fin": "16:00" }
+    ]
+  },
+  {
+    "slug": "viaje-egresados",
+    "nombre": "Viaje de Egresados",
+    "descripcion": "Bariloche, nieve y salidas grupales",
+    "ciudad": "Bariloche",
+    "categoria": "nieve",
+    "imagen": "Bariloche_Actividades.jpg",
+    "alt": "viaje de egresados en Bariloche, actividades de nieve",
+    "meta": ["Nieve · Boliches y Mas"],
+    "url": "https://www.travelrock.com.ar/",
+    "horarios": [
+      { "dia": 1, "hora-inicio": "08:00", "hora-fin": "23:30" }
+    ]
+  },
+  {
+    "slug": "kendrick-lamar",
+    "nombre": "Kendrick Lamar",
+    "descripcion": "concierto en Buenos Aires",
+    "ciudad": "Buenos Aires",
+    "categoria": "musica",
+    "imagen": "Kendrick_Lamar_Actividades.png",
+    "alt": "Kendrick Lamar concierto en Buenos Aires",
+    "meta": ["Música · Concierto", "1 noche"],
+    "url": "https://www.allaccess.com.ar/event/kendrick-lamar-venta-general",
+    "horarios": [
+      { "dia": 2, "hora-inicio": "21:00", "hora-fin": "23:30" }
+    ]
+  },
+  {
+    "slug": "duki",
+    "nombre": "Duki",
+    "descripcion": "concierto en Buenos Aires",
+    "ciudad": "Buenos Aires",
+    "categoria": "musica",
+    "imagen": "Duki_Actividades .webp",
+    "alt": "Duki en concierto",
+    "meta": ["Música · Concierto", "1 noche"],
+    "url": "https://www.allaccess.com.ar/",
+    "horarios": [
+      { "dia": 6, "hora-inicio": "21:00", "hora-fin": "23:30" }
+    ]
+  }
+]

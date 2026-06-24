@@ -7,7 +7,7 @@ export default function useTheme(defaultTheme = "light") {
     try {
       const stored = localStorage.getItem(KEY);
       return stored || defaultTheme;
-    } catch (e) {
+    } catch {
       return defaultTheme;
     }
   });
@@ -16,7 +16,9 @@ export default function useTheme(defaultTheme = "light") {
     try {
       localStorage.setItem(KEY, theme);
       document.documentElement.setAttribute("data-theme", theme);
-    } catch (e) {}
+    } catch {
+      /* localStorage puede no estar disponible en modo privado */
+    }
   }, [theme]);
 
   const toggle = () =>
