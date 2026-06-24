@@ -1,7 +1,7 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { fetchCiudades } from "@api/travelApi";
 import Card from "@components/ui/Card";
-import ciudades from "@data/ciudades.json";
 
 const zones = [
   ["centro", "Pampeana"],
@@ -25,10 +25,25 @@ const normalize = (value) =>
     .replace(/\p{Diacritic}/gu, "");
 
 const Buscador = () => {
+  const [ciudades, setCiudades] = useState([]);
+  const [loadError, setLoadError] = useState("");
   const [query, setQuery] = useState("");
   const [selectedZones, setSelectedZones] = useState([]);
   const [selectedThemes, setSelectedThemes] = useState([]);
   const [sort, setSort] = useState("price-asc");
+
+  useEffect(() => {
+    const loadCiudades = async () => {
+      try {
+        const data = await fetchCiudades();
+        setCiudades(data);
+      } catch (error) {
+        setLoadError(error.message);
+      }
+    };
+
+    loadCiudades();
+  }, []);
 
   const filteredCities = useMemo(() => {
     const normalizedQuery = normalize(query);
@@ -67,7 +82,7 @@ const Buscador = () => {
       .sort((a, b) =>
         sort === "price-asc" ? a.price - b.price : b.price - a.price
       );
-  }, [query, selectedThemes, selectedZones, sort]);
+  }, [ciudades, query, selectedThemes, selectedZones, sort]);
 
   const handleZone = (event) => {
     const { checked, value } = event.target;
@@ -185,6 +200,7 @@ const Buscador = () => {
             </header>
 
             <ul className="listado" role="list">
+              {loadError && <li className="msg">{loadError}</li>}
               {filteredCities.map((city) => (
                 <li key={city.slug}>
                   <Link to={`/${city.slug}`} className="card-link">

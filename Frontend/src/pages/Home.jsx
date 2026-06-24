@@ -1,9 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { fetchCiudades } from "@api/travelApi";
 import Button from "@components/ui/Button";
 import Card from "@components/ui/Card";
 import Input from "@components/ui/Input";
-import ciudades from "@data/ciudades.json";
 
 const initialForm = {
   ciudad_origen: "",
@@ -20,7 +20,7 @@ const normalize = (value) =>
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 
-const validateField = (name, value, data) => {
+const validateField = (name, value, data, ciudades) => {
   const allowedCities = ciudades.map((city) => normalize(city.cityName));
   const lettersOnly = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/;
 
@@ -57,17 +57,35 @@ const validateField = (name, value, data) => {
   return "";
 };
 
-const validateForm = (data) =>
+const validateForm = (data, ciudades) =>
   Object.keys(data).reduce(
-    (acc, key) => ({ ...acc, [key]: validateField(key, data[key], data) }),
+    (acc, key) => ({
+      ...acc,
+      [key]: validateField(key, data[key], data, ciudades),
+    }),
     {}
   );
 
 const Home = () => {
   const navigate = useNavigate();
+  const [ciudades, setCiudades] = useState([]);
+  const [loadError, setLoadError] = useState("");
   const [formData, setFormData] = useState(initialForm);
   const [errors, setErrors] = useState({});
-  const featuredCities = useMemo(() => ciudades.slice(0, 6), []);
+  const featuredCities = useMemo(() => ciudades.slice(0, 6), [ciudades]);
+
+  useEffect(() => {
+    const loadCiudades = async () => {
+      try {
+        const data = await fetchCiudades();
+        setCiudades(data);
+      } catch (error) {
+        setLoadError(error.message);
+      }
+    };
+
+    loadCiudades();
+  }, []);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -76,14 +94,20 @@ const Home = () => {
     setFormData(nextData);
     setErrors((prev) => ({
       ...prev,
-      [name]: validateField(name, value, nextData),
+      [name]: validateField(name, value, nextData, ciudades),
       ...(name.includes("fecha")
         ? {
-            fecha_ida: validateField("fecha_ida", nextData.fecha_ida, nextData),
+            fecha_ida: validateField(
+              "fecha_ida",
+              nextData.fecha_ida,
+              nextData,
+              ciudades
+            ),
             fecha_vuelta: validateField(
               "fecha_vuelta",
               nextData.fecha_vuelta,
-              nextData
+              nextData,
+              ciudades
             ),
           }
         : {}),
@@ -92,7 +116,7 @@ const Home = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const nextErrors = validateForm(formData);
+    const nextErrors = validateForm(formData, ciudades);
     setErrors(nextErrors);
 
     if (Object.values(nextErrors).some(Boolean)) return;
@@ -190,6 +214,7 @@ const Home = () => {
         </div>
 
         <div className="lista-planes">
+          {loadError && <p className="msg">{loadError}</p>}
           {featuredCities.map((city) => (
             <Card className="destination-card" key={city.slug}>
               <Link

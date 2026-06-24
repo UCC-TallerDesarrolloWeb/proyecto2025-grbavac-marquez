@@ -1,11 +1,26 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { fetchActividades } from "@api/travelApi";
 import Button from "@components/ui/Button";
 import Card from "@components/ui/Card";
-import actividades from "@data/actividades.json";
 
 const Activities = () => {
+  const [actividades, setActividades] = useState([]);
+  const [loadError, setLoadError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState("todas");
+
+  useEffect(() => {
+    const loadActividades = async () => {
+      try {
+        const data = await fetchActividades();
+        setActividades(data);
+      } catch (error) {
+        setLoadError(error.message);
+      }
+    };
+
+    loadActividades();
+  }, []);
 
   const filteredActivities = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
@@ -21,7 +36,7 @@ const Activities = () => {
 
       return matchesText && matchesCategory;
     });
-  }, [category, searchQuery]);
+  }, [actividades, category, searchQuery]);
 
   const handleReset = () => {
     setSearchQuery("");
@@ -75,6 +90,7 @@ const Activities = () => {
           Listado de actividades
         </h2>
         <ul className="cards" role="list">
+          {loadError && <li className="msg">{loadError}</li>}
           {filteredActivities.map((activity) => (
             <li key={activity.slug}>
               <Card id={`card-${activity.slug}`}>
