@@ -1,26 +1,29 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "@/styles/main.scss";
-import Layout from "@/components/Layout";
-import Home from "@/components/Home";
-import BuenosAires from "@/components/cities/BuenosAires";
-import Cordoba from "@/components/cities/Cordoba";
-import Mendoza from "@/components/cities/Mendoza";
-import Misiones from "@/components/cities/Misiones";
-import Salta from "@/components/cities/Salta";
-import Tucuman from "@/components/cities/Tucuman";
-import Ushuaia from "@/components/cities/Ushuaia";
-import Bariloche from "@/components/cities/Bariloche";
-import Activities from "@/components/Activities";
-import Contact from "@/components/Contact";
-import Register from "@/components/Register";
-import NotFound from "@/components/NotFound";
+import "@styles/main.scss";
+import Layout from "@components/Layout";
+import { ThemeProvider } from "@context/ThemeContext";
+import Home from "@pages/Home";
+import Buscador from "@pages/Buscador";
+import BuenosAires from "@pages/cities/BuenosAires";
+import Cordoba from "@pages/cities/Cordoba";
+import Mendoza from "@pages/cities/Mendoza";
+import Misiones from "@pages/cities/Misiones";
+import Salta from "@pages/cities/Salta";
+import Tucuman from "@pages/cities/Tucuman";
+import Ushuaia from "@pages/cities/Ushuaia";
+import Bariloche from "@pages/cities/Bariloche";
+import Activities from "@pages/Activities";
+import Contact from "@pages/Contact";
+import Register from "@pages/Register";
+import NotFound from "@pages/NotFound";
 
-function App() {
-  return (
+const App = () => (
+  <ThemeProvider>
     <Router>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="buscador" element={<Buscador />} />
           <Route path="buenos-aires" element={<BuenosAires />} />
           <Route path="cordoba" element={<Cordoba />} />
           <Route path="mendoza" element={<Mendoza />} />
@@ -36,7 +39,7 @@ function App() {
         </Route>
       </Routes>
     </Router>
-  );
-}
+  </ThemeProvider>
+);
 
 export default App;

@@ -1,39 +1,66 @@
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import ThemeContext from "@context/themeContextObject";
 
-export default function Navbar() {
+const cityMap = {
+  "buenos aires": "/buenos-aires",
+  cordoba: "/cordoba",
+  córdoba: "/cordoba",
+  mendoza: "/mendoza",
+  misiones: "/misiones",
+  salta: "/salta",
+  tucuman: "/tucuman",
+  tucumán: "/tucuman",
+  ushuaia: "/ushuaia",
+  bariloche: "/bariloche",
+};
+
+const pageTitles = {
+  "/buscador": "DESTINOS DISPONIBLES",
+  "/contacto": "CANALES DE CONSULTA",
+  "/actividades": "ACTIVIDADES DISPONIBLES",
+  "/registrarse": "REGISTRO",
+};
+
+const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { theme } = useContext(ThemeContext);
   const [q, setQ] = useState("");
+  const title = pageTitles[location.pathname] || "RUTAS ARGENTINAS";
+  const links = [
+    ["/", "Inicio"],
+    ["/buscador", "Buscador"],
+    ["/actividades", "Actividades"],
+    ["/contacto", "Contacto"],
+    ["/registrarse", "Registrarse / Iniciar Sesion"],
+  ].filter(([to]) => to !== location.pathname || to === "/");
 
   const onSearch = (e) => {
     e.preventDefault();
-    // navigate to a normalized route if possible, or to search page
     const key = q.trim().toLowerCase();
     if (!key) return;
-    // simple mapping for known cities (lowercase, no accents)
-    const map = {
-      "buenos aires": "/buenos-aires",
-      cordoba: "/cordoba",
-      mendoza: "/mendoza",
-      misiones: "/misiones",
-      salta: "/salta",
-      tucuman: "/tucuman",
-      ushuaia: "/ushuaia",
-      bariloche: "/bariloche",
-    };
-    const dest = map[key] || `/actividades`;
-    navigate(dest);
+    navigate(cityMap[key] || "/buscador");
   };
 
   return (
-    <nav>
-      <form
-        onSubmit={onSearch}
-        style={{ display: "inline-block", marginRight: 12 }}
-      >
+    <nav className="site-nav" aria-label="navegación principal">
+      <Link to="/" className="brand" aria-label="ir al inicio">
+        <img
+          src="/imagenes/Logo-Rutas-Argentinas.jpeg.jpg"
+          alt="logotipo de rutas argentinas"
+        />
+      </Link>
+
+      <h1 className="site-title">{title}</h1>
+
+      <form className="nav-search visually-hidden" onSubmit={onSearch}>
+        <label htmlFor="nav-search" className="visually-hidden">
+          Buscar ciudad
+        </label>
         <input
+          id="nav-search"
           type="text"
-          aria-label="Buscar ciudad"
           placeholder="Buscar ciudad"
           value={q}
           onChange={(e) => setQ(e.target.value)}
@@ -41,44 +68,15 @@ export default function Navbar() {
         <button type="submit">Ir</button>
       </form>
 
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/buenos-aires">Buenos Aires</Link>
-        </li>
-        <li>
-          <Link to="/cordoba">Córdoba</Link>
-        </li>
-        <li>
-          <Link to="/mendoza">Mendoza</Link>
-        </li>
-        <li>
-          <Link to="/misiones">Misiones</Link>
-        </li>
-        <li>
-          <Link to="/salta">Salta</Link>
-        </li>
-        <li>
-          <Link to="/tucuman">Tucumán</Link>
-        </li>
-        <li>
-          <Link to="/ushuaia">Ushuaia</Link>
-        </li>
-        <li>
-          <Link to="/bariloche">Bariloche</Link>
-        </li>
-        <li>
-          <Link to="/actividades">Actividades</Link>
-        </li>
-        <li>
-          <Link to="/contacto">Contacto</Link>
-        </li>
-        <li>
-          <Link to="/registrarse">Registrarse</Link>
-        </li>
+      <ul data-theme-label={theme}>
+        {links.map(([to, label]) => (
+          <li key={to}>
+            <NavLink to={to}>{label}</NavLink>
+          </li>
+        ))}
       </ul>
     </nav>
   );
-}
+};
+
+export default Navbar;

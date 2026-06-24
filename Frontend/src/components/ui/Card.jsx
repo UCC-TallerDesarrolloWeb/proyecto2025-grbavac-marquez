@@ -1,5 +1,7 @@
-import React from "react";
-
-export default function Card({ children, className = "" }) {
-  return <article className={`card ${className}`}>{children}</article>;
+export default function Card({ children, className = "", ...rest }) {
+  return (
+    <article className={`card ${className}`} {...rest}>
+      {children}
+    </article>
+  );
 }

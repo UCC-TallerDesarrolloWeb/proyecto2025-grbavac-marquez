@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Input({
   id,
   label,
@@ -28,11 +26,7 @@ export default function Input({
         {...rest}
       />
       {error && (
-        <div
-          id={`${id}-error`}
-          role="alert"
-          style={{ color: "#b91c1c", marginTop: 6 }}
-        >
+        <div id={`${id}-error`} className="field-error" role="alert">
           {error}
         </div>
       )}

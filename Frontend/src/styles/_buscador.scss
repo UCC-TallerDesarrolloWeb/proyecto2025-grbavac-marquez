@@ -1,0 +1,196 @@
+.page-buscador {
+  max-width: var(--max-width);
+  padding: 0 16px 40px;
+}
+
+.page-buscador #contenido {
+  padding-top: 22px;
+}
+
+.page-buscador .layout {
+  align-items: start;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 286px minmax(0, 1fr);
+}
+
+.page-buscador .col-izq {
+  display: grid;
+  gap: 16px;
+}
+
+.page-buscador #form-filtros {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  display: grid;
+  gap: 16px;
+  padding: 0;
+}
+
+.page-buscador .bloque {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+}
+
+.page-buscador .bloque-titulo {
+  color: var(--text);
+  font-size: 0.98rem;
+  margin-bottom: 12px;
+}
+
+.page-buscador fieldset {
+  border: 0;
+}
+
+.page-buscador .lista-check {
+  display: grid;
+  gap: 11px;
+  list-style: none;
+}
+
+.page-buscador .lista-check li {
+  align-items: center;
+  color: var(--text);
+  display: flex;
+  gap: 10px;
+}
+
+.page-buscador .lista-check input {
+  height: 13px;
+  width: 13px;
+}
+
+.page-buscador .campo {
+  margin-bottom: 12px;
+}
+
+.page-buscador .campo label {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.page-buscador .col-der {
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  min-height: 720px;
+}
+
+.page-buscador .resultados-encabezado {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-left: 0;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr auto;
+  min-height: 70px;
+  padding: 12px 18px;
+}
+
+.page-buscador #cantidad {
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.page-buscador .orden {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: auto 250px;
+}
+
+.page-buscador .orden label {
+  color: var(--muted);
+}
+
+.page-buscador .listado {
+  display: grid;
+  gap: 18px;
+  list-style: none;
+  padding: 24px 18px;
+}
+
+.page-buscador .card-link {
+  display: block;
+}
+
+.page-buscador .search-card {
+  align-items: center;
+  border-radius: 14px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 180px minmax(0, 1fr) 90px;
+  padding: 14px;
+}
+
+.page-buscador .search-card .card-media img {
+  border-radius: 10px;
+  height: 122px;
+  object-fit: cover;
+  width: 180px;
+}
+
+.page-buscador .search-card .card-body {
+  min-width: 0;
+}
+
+.page-buscador .badge {
+  background: #d9f3ec;
+  border-radius: 999px;
+  color: #10a37f;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  padding: 7px 12px;
+  text-transform: uppercase;
+}
+
+.page-buscador .card-titulo {
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 8px;
+}
+
+.page-buscador .card-meta {
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  list-style: none;
+}
+
+.page-buscador .card-precio {
+  color: var(--muted);
+  text-align: right;
+}
+
+.page-buscador .monto {
+  color: #008c75;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+  .page-buscador .layout,
+  .page-buscador .resultados-encabezado,
+  .page-buscador .search-card {
+    grid-template-columns: 1fr;
+  }
+
+  .page-buscador .search-card .card-media img {
+    width: 100%;
+  }
+
+  .page-buscador .card-precio {
+    text-align: left;
+  }
+
+  .page-buscador .orden {
+    grid-template-columns: 1fr;
+  }
+}

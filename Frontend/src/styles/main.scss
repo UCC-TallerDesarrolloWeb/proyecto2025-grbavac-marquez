@@ -1,42 +1,33 @@
-// Variables globales
-:root {
-  --bg: #f7f8fa;
-  --surface: #ffffff;
-  --line: #e5e7eb;
-  --text: #111827;
-  --muted: #6b7280;
-  --primary: #9c27b0;
-  --accent: #d81b60;
-  --radius: 14px;
-  --radius-lg: 18px;
-  --shadow-sm: 0 8px 20px rgba(17, 24, 39, 0.06);
-  --shadow: 0 14px 34px rgba(17, 24, 39, 0.12);
-}
+@use "variables";
+@use "home";
+@use "buscador";
+@use "activities";
+@use "cities";
+@use "forms";
+@use "register";
 
-// Reset y estilos base
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html,
-body {
-  height: 100%;
+body,
+#root {
+  min-height: 100%;
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-    "Apple Color Emoji", "Segoe UI Emoji";
   background: var(--bg);
   color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
 }
 
 img {
-  max-width: 100%;
   display: block;
+  max-width: 100%;
 }
 
 a {
@@ -44,117 +35,218 @@ a {
   text-decoration: none;
 }
 
-// Importar parciales
-@import "variables";
-@import "activities";
-@import "forms";
-@import "cities";
-@import "home";
-@import "register";
-
-// Reset
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  color: $text-color;
-  background-color: $background-color;
-}
-
-// Layout
 .app {
   min-height: 100vh;
+}
+
+.app-header {
+  align-items: center;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
   display: flex;
-  flex-direction: column;
+  gap: 16px;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: 10px 18px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 
 main {
+  min-height: calc(100vh - 76px);
+}
+
+.site-nav {
+  align-items: center;
+  display: flex;
   flex: 1;
-  padding: 2rem;
+  flex-wrap: nowrap;
+  gap: 10px;
+  justify-content: space-between;
 }
 
-// Navigation
-nav {
-  background-color: $primary-color;
-  padding: 1rem;
-  
-  ul {
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    
-    &:hover {
-      background-color: lighten($primary-color, 10%);
-    }
-  }
+.brand {
+  align-items: center;
+  display: inline-flex;
+  gap: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  flex: 0 0 72px;
 }
 
-// Buttons
-.button {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background-color: $accent-color;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  
-  &:hover {
-    background-color: darken($accent-color, 10%);
-  }
+.brand img {
+  height: 38px;
+  object-fit: cover;
+  width: 38px;
 }
 
-// Cards
-.card {
-  background: white;
+.site-title {
+  color: var(--text);
+  flex: 1 1 auto;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.nav-search {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+}
+
+.nav-search input,
+.campo input,
+.campo select,
+.campo textarea,
+.orden select {
+  background: #f3f4f6;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: #111827;
+  padding: 11px 12px;
+  width: 100%;
+}
+
+.campo textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.site-nav ul {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  gap: 6px;
+  list-style: none;
+  justify-content: flex-end;
+}
+
+.site-nav a:not(.brand),
+.button-link {
   border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
+  color: var(--text);
+  display: inline-flex;
+  padding: 8px 9px;
+  white-space: nowrap;
 }
 
-// Forms
-.form-group {
-  margin-bottom: 1rem;
-  
-  label {
-    display: block;
-    margin-bottom: 0.5rem;
-  }
-  
-  input, textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    
-    &:focus {
-      outline: none;
-      border-color: $accent-color;
-    }
-  }
+.site-nav a.active,
+.site-nav a:hover {
+  background: rgba(216, 27, 96, 0.12);
+  color: var(--accent);
 }
 
-// Grid
-.grid {
+.btn,
+.nav-search button {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  transition: filter 0.2s ease, transform 0.08s ease;
+}
+
+.btn:hover,
+.nav-search button:hover {
+  filter: brightness(0.96);
+}
+
+.btn-primary,
+.nav-search button {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.btn-outline {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.campo {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
+  gap: 7px;
+}
+
+.campo label,
+.field-label {
+  color: var(--muted);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.field-error {
+  color: #b91c1c;
+  font-size: 0.86rem;
+}
+
+.success-message {
+  color: #047857;
+  font-weight: 700;
+}
+
+.visually-hidden,
+.sr-only {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.page-simple {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 72px 20px;
+  text-align: center;
+}
+
+.page-simple h1 {
+  color: var(--accent);
+  font-size: 3rem;
+}
+
+@media (max-width: 760px) {
+  .app-header,
+  .site-nav {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .site-nav ul {
+    justify-content: flex-start;
+    width: auto;
+  }
+
+  .brand {
+    width: auto;
+  }
+
 }
