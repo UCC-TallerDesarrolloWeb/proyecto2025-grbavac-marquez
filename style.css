@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;700&display=swap");
 
 /* ===== Home / base ===== */
+/* :root guarda variables CSS reutilizables para colores, radios y sombras. */
 :root {
   --bg: #f7f8fa;
   --text: #222222;
@@ -14,6 +15,7 @@
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+/* Selector universal: hace que padding y border cuenten dentro del ancho total. */
 * {
   box-sizing: border-box;
 }
@@ -22,7 +24,9 @@ body {
   height: 100%;
 }
 body {
+  /* Quita el margen por defecto del navegador. */
   margin: 0;
+  /* Define la fuente base de toda la pagina. */
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
     "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text);
@@ -30,7 +34,9 @@ body {
   line-height: 1.5;
 }
 img {
+  /* Evita que las imagenes se salgan de su contenedor. */
   max-width: 100%;
+  /* display block elimina espacios fantasma debajo de imagenes inline. */
   display: block;
 }
 a {
@@ -39,14 +45,17 @@ a {
 }
 
 /* por ID */
+/* #contenedor limita el ancho maximo y centra el contenido. */
 #contenedor {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
 }
+/* #cabecera es el fondo blanco del header. */
 #cabecera {
   background: var(--surface);
 }
+/* Imagen principal del hero: ocupa todo el ancho y recorta con object-fit. */
 #hero-img {
   width: 100%;
   height: 320px;
@@ -55,6 +64,7 @@ a {
 }
 
 /* por Tag */
+/* Etiquetas semanticas usadas en HTML. Se declaran block para comportamiento consistente. */
 header,
 nav,
 main,
@@ -65,6 +75,7 @@ footer {
 }
 
 /* header */
+/* Flexbox acomoda logo, titulo y menu en una misma fila. */
 .cabecera-inner {
   display: flex;
   align-items: center;
@@ -73,16 +84,19 @@ footer {
   padding: 12px 0;
   border-bottom: 1px solid #e5e7eb;
 }
+/* Logo de la cabecera. */
 #logo {
   height: 40px;
   width: auto;
 }
+/* Titulo principal dentro del header. */
 #titulo {
   margin: 0;
   font-size: 1.125rem;
   text-transform: capitalize;
   color: #111827;
 }
+/* Menu horizontal: se eliminan bullets de ul y se usa flex. */
 #menu {
   list-style: none;
   display: flex;
@@ -90,25 +104,30 @@ footer {
   margin: 0;
   padding: 0;
 }
+/* Estilo de cada enlace del menu. */
 #menu a {
   display: inline-block;
   padding: 8px 12px;
   border-radius: 999px;
   transition: background 0.2s ease;
 }
+/* Pseudoclase hover: se activa al pasar el mouse por el enlace. */
 #menu a:hover {
   background: #f3f4f6;
 }
 
 /* hero */
+/* Separacion superior del bloque hero. */
 #hero {
   margin-top: 12px;
 }
+/* position relative permite ubicar el buscador absoluto dentro de este contenedor. */
 .hero-inner {
   position: relative;
 }
 
 /* buscador */
+/* Caja del buscador: position absolute la superpone sobre la imagen del hero. */
 #buscador {
   position: absolute;
   left: 50%;
@@ -120,22 +139,27 @@ footer {
   padding: 20px;
   width: min(920px, 92%);
 }
+/* El formulario no necesita margen extra porque la caja ya tiene padding. */
 #form-busqueda {
   margin: 0;
 }
+/* Cada fila del formulario usa CSS grid para alinear campos. */
 #form-busqueda .fila {
   display: grid;
   gap: 16px;
   margin: 0 0 12px 0;
 }
+/* Primera fila: origen y destino en dos columnas iguales. */
 #form-busqueda .fila:nth-child(1) {
   grid-template-columns: 1fr 1fr;
 }
+/* Segunda fila: fechas, pasajeros y boton. */
 #form-busqueda .fila:nth-child(2) {
   grid-template-columns: 1fr 1fr auto;
   align-items: end;
 }
 
+/* Labels de formularios: texto chico, mayuscula y color secundario. */
 .campo label {
   display: block;
   font-size: 0.78rem;
@@ -144,6 +168,7 @@ footer {
   margin: 0 0 6px 0;
   color: var(--muted);
 }
+/* Inputs/selects comparten estilo para verse consistentes. */
 .campo input,
 .campo select {
   width: 100%;
@@ -157,6 +182,7 @@ footer {
   background: #f3f4f6;
 }
 
+/* Boton principal del buscador. */
 #btn-buscar {
   height: 44px;
   padding: 0 22px;
@@ -168,17 +194,21 @@ footer {
   cursor: pointer;
   transition: transform 0.06s ease;
 }
+/* Hover del boton: baja un poco el brillo. */
 #btn-buscar:hover {
   filter: brightness(0.96);
 }
+/* Active se aplica mientras el boton esta siendo presionado. */
 #btn-buscar:active {
   transform: translateY(1px);
 }
 
 /* planes */
+/* Espaciado vertical de la seccion de tarjetas. */
 #planes {
   padding: 48px 0;
 }
+/* Titulo de la seccion planes. */
 .planes-inner > h2 {
   text-align: center;
   text-transform: uppercase;
@@ -186,17 +216,20 @@ footer {
   margin: 0;
   color: #111827;
 }
+/* Subtitulo de la seccion planes. */
 .planes-inner > p {
   text-align: center;
   color: var(--muted);
   margin: 8px 0 24px 0;
 }
 
+/* Mobile first: por defecto las tarjetas van en una sola columna. */
 .lista-planes {
   display: grid;
   grid-template-columns: 1fr;
   gap: 16px;
 }
+/* Media query: desde 768px pasan a dos columnas. */
 @media (min-width: 768px) {
   .lista-planes {
     grid-template-columns: 1fr 1fr;
@@ -204,6 +237,7 @@ footer {
   }
 }
 
+/* Tarjeta reutilizable para destinos y otros bloques. */
 .card {
   background: var(--surface);
   border-radius: var(--radius);
@@ -211,14 +245,17 @@ footer {
   box-shadow: var(--shadow-sm);
   transition: box-shadow 0.2s ease, transform 0.06s ease;
 }
+/* Hover de tarjeta: aumenta sombra para dar sensacion de interaccion. */
 .card:hover {
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
 }
+/* Active de tarjeta: pequeno movimiento al hacer click. */
 .card:active {
   transform: translateY(1px);
 }
 
 /* el link ocupa toda la card */
+/* Convierte el enlace en fila flexible para alinear imagen y texto. */
 .card a.card-link {
   display: flex;
   align-items: center;
@@ -226,38 +263,45 @@ footer {
   width: 100%;
 }
 
+/* Imagen miniatura dentro de cada tarjeta. */
 .card img {
   width: 100px;
   height: 72px;
   object-fit: cover;
   border-radius: 12px;
 }
+/* Titulo del destino dentro de la tarjeta. */
 .card h3 {
   margin: 0 0 4px 0;
   font-size: 1rem;
   text-transform: capitalize;
 }
+/* Texto secundario dentro de la tarjeta. */
 .card p {
   margin: 0;
   color: var(--muted);
   font-size: 0.92rem;
 }
 
+/* Contenedor del texto de la tarjeta en columna. */
 .card-texto {
   display: flex;
   flex-direction: column;
 }
 
 /* footer */
+/* Pie general: espaciado y color secundario. */
 #pie {
   padding: 28px 0 48px 0;
   color: #4b5563;
 }
+/* Centra el contenido interno del footer. */
 .pie-inner {
   text-align: center;
 }
 
 /* accesibilidad (pseudoclase focus) */
+/* focus permite ver con teclado que elemento esta seleccionado. */
 a:focus,
 button:focus,
 input:focus,
@@ -267,21 +311,25 @@ textarea:focus {
   outline-offset: 2px;
 }
 /* ===== Testimonios ===== */
+/* Seccion de comentarios con fondo suave. */
 #testimonios {
   padding: 32px 0 24px 0;
   background: linear-gradient(180deg, transparent 0, #f2f4f7 100%);
 }
 
+/* Titulo de testimonios. */
 .testimonios-inner > h2 {
   margin: 0;
   font-size: 1.8rem;
   color: #111827;
 }
+/* Subtitulo de testimonios. */
 .testimonios-inner .sub {
   margin: 6px 0 20px 0;
   color: var(--muted);
 }
 
+/* Grilla de testimonios: una columna en mobile. */
 .grid-testimonios {
   display: grid;
   grid-template-columns: 1fr;
@@ -289,12 +337,14 @@ textarea:focus {
 }
 
 /* 3 columnas en desktop */
+/* Desde 992px los testimonios se muestran en tres columnas. */
 @media (min-width: 992px) {
   .grid-testimonios {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
+/* Tarjeta individual de testimonio. */
 .t-card {
   position: relative;
   background: var(--surface);
@@ -317,6 +367,7 @@ textarea:focus {
 }
 
 .t-quote {
+  /* Texto citado del usuario. */
   margin: 0 0 10px 0;
   font-size: 1.2rem;
   font-weight: 600;
@@ -324,6 +375,7 @@ textarea:focus {
 }
 
 .t-stars {
+  /* Estrellas de valoracion. */
   display: inline-flex;
   gap: 2px;
   font-size: 1.1rem;
@@ -332,6 +384,7 @@ textarea:focus {
 }
 
 .t-author {
+  /* Nombre del autor del comentario. */
   margin: 8px 0 6px 0;
   color: #4b5563;
   font-size: 0.95rem;
@@ -352,6 +405,7 @@ textarea:focus {
 }
 
 .t-photo {
+  /* Foto del testimonio; object-fit recorta sin deformar. */
   position: relative;
   z-index: 1; /* sobre el offset */
   width: 100%;
@@ -362,6 +416,7 @@ textarea:focus {
 }
 
 /* toque de profundidad al hover, como tus cards de planes */
+/* Interaccion visual al pasar el mouse por una tarjeta de testimonio. */
 .t-card:hover {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
   transform: translateY(-1px);

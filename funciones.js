@@ -21,6 +21,8 @@
 
     const originalItems = Array.from(list.querySelectorAll(itemSelector));
 
+    // getPrice toma una card y devuelve un numero para poder ordenarla.
+    // Primero intenta leer data-price; si no existe, limpia el texto visible del precio.
     const getPrice = (li) => {
       const el = li.querySelector(priceSelector);
       if (!el) return Number.POSITIVE_INFINITY;
@@ -38,17 +40,22 @@
     };
 
     const ordenar = () => {
+      // asc indica si el select esta en precio ascendente.
       const asc = (select.value || "").toLowerCase() === "price-asc";
       const items = Array.from(list.querySelectorAll(itemSelector));
 
+      // enriched guarda cada LI junto con su precio y su posicion original.
+      // idx sirve para mantener el orden original si dos precios son iguales.
       const enriched = items
         .map((li) => ({ li, p: getPrice(li), idx: originalItems.indexOf(li) }))
         .map((o) => (o.idx < 0 ? { ...o, idx: Number.MAX_SAFE_INTEGER } : o));
 
+      // sort reordena el arreglo. El ternario decide ascendente o descendente.
       enriched.sort((a, b) =>
         a.p === b.p ? a.idx - b.idx : asc ? a.p - b.p : b.p - a.p
       );
 
+      // replaceChildren vuelve a poner los LI en el DOM ya ordenados.
       list.replaceChildren(...enriched.map((e) => e.li));
     };
 
@@ -63,6 +70,27 @@
     global.Funciones.initOrdenPrecio = initOrdenPrecio;
     initOrdenPrecio();
   });
+})(window);
+
+// Estado compartido para que los filtros de tema y destino no se pisen entre si.
+// Cada LI guarda si pasa filtro de destino y si pasa filtro de tema.
+// La card solo se muestra cuando pasa ambos.
+((global) => {
+  const updateCombinedDisplay = (li) => {
+    const pasaDestino = li.dataset.filterDestino !== "0";
+    const pasaTema = li.dataset.filterTema !== "0";
+    li.style.display = pasaDestino && pasaTema ? "" : "none";
+  };
+
+  const setFilterState = (li, filterName, passes) => {
+    li.dataset[filterName] = passes ? "1" : "0";
+    updateCombinedDisplay(li);
+  };
+
+  global.FiltrosCombinados = {
+    setFilterState,
+    updateCombinedDisplay,
+  };
 })(window);
 
 // funciones.js — filtro por Destino (texto + zonas, incluye Noroeste)
@@ -102,6 +130,8 @@
         .normalize("NFD")
         .replace(/\p{Diacritic}/gu, "");
 
+    // inferZona intenta descubrir a que zona pertenece una card.
+    // Primero busca data-zona en el HTML; si no esta, la deduce por el titulo.
     const inferZona = (li) => {
       const art = li.querySelector(articleSelector);
       if (!art) return "";
@@ -127,25 +157,37 @@
       return "";
     };
 
+    // Devuelve un arreglo con los valores de los checkboxes de zona marcados.
     const zonasSeleccionadas = () =>
       checks.filter((c) => c.checked).map((c) => norm(c.value));
 
     const aplicar = () => {
+      // q es el texto escrito por el usuario, ya normalizado.
       const q = norm(input.value);
+      // zonas es el arreglo de zonas seleccionadas.
       const zonas = zonasSeleccionadas();
 
       items.forEach((li) => {
         const titulo = norm(li.querySelector(titleSelector)?.textContent);
         const zona = inferZona(li);
 
+        // pasaTexto: true si no hay busqueda o si el titulo contiene el texto.
         const pasaTexto = !q || titulo.includes(q);
+        // pasaZona: true si no hay zonas elegidas o si la card pertenece a una de ellas.
         const pasaZona = zonas.length === 0 || (zona && zonas.includes(zona));
 
-        li.style.display = pasaTexto && pasaZona ? "" : "none";
+        // Si cumple texto y zona, este filtro queda aprobado.
+        // FiltrosCombinados combina este resultado con el filtro de temas.
+        global.FiltrosCombinados.setFilterState(
+          li,
+          "filterDestino",
+          pasaTexto && pasaZona
+        );
       });
     };
 
     let timer;
+    // debounce espera 150ms antes de filtrar para no ejecutar la funcion en cada tecla instantaneamente.
     const debounced = () => {
       clearTimeout(timer);
       timer = setTimeout(aplicar, 150);
@@ -198,10 +240,12 @@
         .normalize("NFD")
         .replace(/\p{Diacritic}/gu, "");
 
+    // temasDeLi devuelve un arreglo con los temas asociados a una card.
     const temasDeLi = (li) => {
       const art = li.querySelector(articleSel);
       if (!art) return [];
       const dt = art.getAttribute("data-temas");
+      // Si la card trae data-temas, se usa ese atributo directamente.
       if (dt)
         return dt
           .split(",")
@@ -219,7 +263,8 @@
 
       const temas = new Set();
 
-      // detectar temas por palabras clave
+      // Detectar temas por palabras clave usando expresiones regulares.
+      // Set evita repetir el mismo tema mas de una vez.
       if (/(kayak|acuatic|surf|rafting|buceo|snorkel)/.test(texto))
         temas.add("acuaticas");
       if (/(ski|snowboard|trekking|adrenalina|parapente|tirolesa)/.test(texto))
@@ -240,6 +285,7 @@
       return Array.from(temas);
     };
 
+    // Devuelve los temas marcados por el usuario.
     const seleccionados = () =>
       checks.filter((c) => c.checked).map((c) => norm(c.value));
 
@@ -247,13 +293,17 @@
       const sel = seleccionados();
       items.forEach((li) => {
         const temas = temasDeLi(li);
-        const pasa = sel.length === 0 || temas.some((t) => sel.includes(t));
+        // Si no hay temas seleccionados, muestra todo.
+        // "actividades" es un tema general, por eso acepta todas las cards.
+        // Para los otros temas, muestra solo cards que tengan al menos un tema seleccionado.
+        const pasa =
+          sel.length === 0 ||
+          sel.includes("actividades") ||
+          temas.some((t) => sel.includes(t));
 
-        if (!pasa) {
-          li.style.display = "none";
-        } else if (li.style.display === "none") {
-          li.style.display = "";
-        }
+        // Este filtro solo guarda si pasa tema; la visibilidad final se decide
+        // combinando tema + destino/texto para que un filtro no pise al otro.
+        global.FiltrosCombinados.setFilterState(li, "filterTema", pasa);
       });
     };
 
@@ -291,6 +341,7 @@ const getCategoriaCard = (liEl) => {
 };
 
 const getIndexText = (liEl) => {
+  // Extrae el titulo de la card y lo normaliza para buscar por texto.
   const titulo = liEl.querySelector(".card-titulo")?.textContent || "";
   return norm(titulo);
 };
@@ -299,11 +350,15 @@ const getIndexText = (liEl) => {
  * Aplica filtros. Oculta/muestra el LI completo.
  */
 const applyFilters = (qValue, catValue, items) => {
+  // visibles cuenta cuantas cards quedan mostradas despues del filtro.
   let visibles = 0;
 
   items.forEach(({ li, idx, cat }) => {
+    // matchTexto verifica si el texto buscado aparece en el indice de busqueda.
     const matchTexto = qValue === "" || idx.includes(qValue);
+    // matchCat verifica si la categoria coincide o si esta seleccionado "todas".
     const matchCat = catValue === "todas" || cat === catValue;
+    // show solo es true si cumple ambos filtros.
     const show = matchTexto && matchCat;
 
     // Quitar display:none si debe mostrarse
@@ -329,6 +384,7 @@ const applyFilters = (qValue, catValue, items) => {
 };
 
 const announceResults = (count) => {
+  // Busca o crea un elemento live para avisar resultados de forma accesible.
   let live = document.getElementById("live-resultado");
   if (!live) {
     live = document.createElement("p");
@@ -360,6 +416,7 @@ const initActividades = () => {
 
   const lis = [...document.querySelectorAll("#actividades .cards > li")];
 
+  // items es un arreglo indexado: cada card guarda su LI, texto normalizado y categoria.
   const items = lis.map((li) => ({
     li,
     idx: getIndexText(li),
@@ -369,6 +426,7 @@ const initActividades = () => {
   // FILTRAR (submit)
   form?.addEventListener("submit", (e) => {
     e.preventDefault();
+    // Lee filtros actuales y los normaliza antes de aplicarlos.
     const qValue = norm(inputQ?.value || "");
     const catValue = (selectCat?.value || "todas").toLowerCase();
     const visibles = applyFilters(qValue, catValue, items);
@@ -450,6 +508,7 @@ const ORIGEN_VALIDOS = new Set([
  * @return {boolean} true si es válido, false si no
  */
 const validateCityFormat = (el, label) => {
+  // value toma lo escrito por el usuario sin espacios al principio/final.
   const value = el.value.trim();
   const re = /^[ a-zA-ZáéíóúÁÉÍÓÚñÑüÜ'.-]+$/;
   if (!value) {
@@ -469,6 +528,7 @@ const validateCityFormat = (el, label) => {
 
 // Origen debe pertenecer al set de ciudades disponibles
 const validateOriginAllowed = (el) => {
+  // Normaliza lo escrito y verifica si existe en el Set de origenes permitidos.
   const key = normalize(el.value);
   if (!ORIGEN_VALIDOS.has(key)) {
     alert("Origen no disponible. Seleccioná una ciudad de la lista.");
@@ -481,6 +541,7 @@ const validateOriginAllowed = (el) => {
 
 // Pasajeros 1–10
 const validatePassengers = (el) => {
+  // Convierte el valor del input a numero para validar rango.
   const v = Number(el.value);
   if (!Number.isInteger(v) || v < 1 || v > 10) {
     alert("Cantidad de pasajeros inválida. Debe ser un entero entre 1 y 10.");
@@ -500,6 +561,7 @@ const validatePassengers = (el) => {
  * @return {boolean} true si son válidas, false si no
  */
 const validateDates = (idaEl, vueltaEl) => {
+  // Si el input tiene valor, se convierte a Date; si esta vacio queda null.
   const ida = idaEl.value ? new Date(idaEl.value) : null;
   const vuelta = vueltaEl.value ? new Date(vueltaEl.value) : null;
 
@@ -519,6 +581,7 @@ const validateDates = (idaEl, vueltaEl) => {
 
 // Página de la ciudad destino (o null)
 const getDestinoPage = (destinoTexto) => {
+  // Convierte el destino ingresado en clave normalizada y busca su pagina HTML.
   const key = normalize(destinoTexto);
   return DESTINOS[key] || null;
 };
@@ -571,6 +634,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const isEmail = (s) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((s || "").trim());
 
   const mark = (el, bad) => {
+    // Marca visual/accesiblemente un campo invalido con aria-invalid.
     if (!el) return;
     bad
       ? el.setAttribute("aria-invalid", "true")
@@ -616,6 +680,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Función para el formulario de contacto
 ((global) => {
   const initFormularioContacto = () => {
+    // Inicializa el formulario de contacto solo si existen sus elementos en la pagina.
     const form = document.getElementById("form-contacto");
     const btn = document.getElementById("btn-enviar");
     const aviso = document.getElementById("aviso");
@@ -624,6 +689,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
+      // Simula envio: deshabilita el boton, cambia texto y luego muestra aviso.
       const original = btn.textContent;
       btn.disabled = true;
       btn.textContent = "enviando...";
@@ -654,6 +720,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Función para el chat
 ((global) => {
   const initChat = () => {
+    // Busca el boton del chat y abre una pagina externa al hacer click.
     const btnChat = document.getElementById("btn-abrir-chat");
     if (!btnChat) return { ok: false };
 
@@ -674,6 +741,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Función para el estimador de espera
 ((global) => {
   const initEstimadorEspera = () => {
+    // Toma selects y salida para calcular una espera aproximada.
     const selDia = document.getElementById("dia");
     const selFranja = document.getElementById("franja");
     const btn = document.getElementById("btn-estimar");
@@ -686,6 +754,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fin: { maniana: 0.9, tarde: 1.8, noche: 1.1 },
     };
     const estimar = () => {
+      // Lee dia/franja, busca el valor en la tabla y actualiza el texto de salida.
       const d = selDia.value;
       const f = selFranja.value;
       const horas = tabla[d] && tabla[d][f] ? tabla[d][f] : 1.0;
@@ -719,6 +788,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Función para calcular diferencia de días ---
   const diferenciaDias = (desde, hasta) => {
+    // Convierte las fechas a milisegundos para calcular la diferencia.
     const t1 = new Date(desde).getTime();
     const t2 = new Date(hasta).getTime();
     if (isNaN(t1) || isNaN(t2)) return 0;
@@ -728,6 +798,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // --- Calcular subtotal ---
   btnCalcular.addEventListener("click", () => {
+    // Lee datos del formulario de reserva y calcula precio total.
     const desde = form["fecha-desde"].value;
     const hasta = form["fecha-hasta"].value;
     const personas = Number(form["cantidad"].value);

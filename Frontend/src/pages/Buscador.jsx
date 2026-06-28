@@ -17,6 +17,7 @@ const themes = [
   ["arte", "Arte callejero y Grafitis"],
 ];
 
+// REGEX + normalizacion: compara texto sin importar mayusculas ni acentos.
 const normalize = (value) =>
   value
     .trim()
@@ -24,7 +25,9 @@ const normalize = (value) =>
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 
+// Pagina buscador: permite filtrar ciudades por texto, zona, tema y precio.
 const Buscador = () => {
+  // Estados principales de datos y filtros.
   const [ciudades, setCiudades] = useState([]);
   const [loadError, setLoadError] = useState("");
   const [query, setQuery] = useState("");
@@ -32,6 +35,7 @@ const Buscador = () => {
   const [selectedThemes, setSelectedThemes] = useState([]);
   const [sort, setSort] = useState("price-asc");
 
+  // Al montar el componente se cargan ciudades desde la API local.
   useEffect(() => {
     const loadCiudades = async () => {
       try {
@@ -45,20 +49,26 @@ const Buscador = () => {
     loadCiudades();
   }, []);
 
+  // Algoritmo principal de filtrado y ordenamiento.
+  // useMemo evita repetir el calculo salvo cuando cambia algun filtro.
   const filteredCities = useMemo(() => {
     const normalizedQuery = normalize(query);
 
     return ciudades
       .filter((city) => {
+        // Filtro por texto: compara la busqueda con el nombre normalizado.
         const matchesQuery =
           !normalizedQuery || normalize(city.cityName).includes(normalizedQuery);
+        // Filtro por zona: si no hay zonas marcadas, acepta todas.
         const matchesZone =
           selectedZones.length === 0 || selectedZones.includes(city.zona);
+        // Texto combinado de ciudad, metadatos y actividades para buscar temas.
         const cityText = normalize(
           `${city.cityName} ${city.meta.join(" ")} ${city.activities
             .map((activity) => `${activity.name} ${activity.description}`)
             .join(" ")}`
         );
+        // REGEX: detecta palabras clave dentro del texto combinado de la ciudad.
         const matchesTheme =
           selectedThemes.length === 0 ||
           selectedThemes.some((theme) => {
@@ -79,20 +89,27 @@ const Buscador = () => {
 
         return matchesQuery && matchesZone && matchesTheme;
       })
+      // TERNARIO: decide si ordena de menor a mayor o de mayor a menor.
       .sort((a, b) =>
         sort === "price-asc" ? a.price - b.price : b.price - a.price
       );
   }, [ciudades, query, selectedThemes, selectedZones, sort]);
 
+  // Agrega o quita una zona del arreglo selectedZones segun el checkbox.
   const handleZone = (event) => {
+    // DESESTRUCTURACION DE OBJETOS: toma checked y value desde event.target.
     const { checked, value } = event.target;
+    // TERNARIO + spread: si checked es true agrega, si no filtra y quita.
     setSelectedZones((prev) =>
       checked ? [...prev, value] : prev.filter((zone) => zone !== value)
     );
   };
 
+  // Agrega o quita un tema del arreglo selectedThemes segun el checkbox.
   const handleTheme = (event) => {
+    // DESESTRUCTURACION DE OBJETOS: toma checked y value desde event.target.
     const { checked, value } = event.target;
+    // TERNARIO + spread: si checked es true agrega, si no filtra y quita.
     setSelectedThemes((prev) =>
       checked ? [...prev, value] : prev.filter((theme) => theme !== value)
     );
@@ -115,6 +132,7 @@ const Buscador = () => {
                 <fieldset className="grupo">
                   <legend className="visually-hidden">Temáticas</legend>
                   <ul className="lista-check" role="list">
+                    {/* DESESTRUCTURACION DE ARRAYS: cada theme es [value, label]. */}
                     {themes.map(([value, label]) => (
                       <li key={value}>
                         <input
@@ -155,6 +173,7 @@ const Buscador = () => {
                     />
                   </div>
                   <ul className="lista-check" role="list">
+                    {/* DESESTRUCTURACION DE ARRAYS: cada zone es [value, label]. */}
                     {zones.map(([value, label]) => (
                       <li key={value}>
                         <input

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "@components/ui/Button";
 
+// Pagina simple para rutas inexistentes.
 const NotFound = () => (
   <section className="page-simple not-found">
     <h1>404</h1>

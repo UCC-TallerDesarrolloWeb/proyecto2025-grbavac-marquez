@@ -5,6 +5,7 @@ import Button from "@components/ui/Button";
 import Card from "@components/ui/Card";
 import Input from "@components/ui/Input";
 
+// Estado inicial del formulario. Mantenerlo separado permite reutilizarlo o resetearlo.
 const initialForm = {
   ciudad_origen: "",
   ciudad_destino: "",
@@ -13,6 +14,8 @@ const initialForm = {
   pasajeros: "",
 };
 
+// REGEX + normalizacion: quita espacios, pasa a minusculas y elimina acentos.
+// Esto permite comparar "Cordoba" con "Cordoba" aunque el usuario escriba distinto.
 const normalize = (value) =>
   value
     .trim()
@@ -20,8 +23,12 @@ const normalize = (value) =>
     .normalize("NFD")
     .replace(/\p{Diacritic}/gu, "");
 
+// Valida un campo individual del formulario segun su name.
+// Recibe tambien el formulario completo para comparar fechas entre si.
 const validateField = (name, value, data, ciudades) => {
+  // Arreglo con las ciudades permitidas, tambien normalizadas.
   const allowedCities = ciudades.map((city) => normalize(city.cityName));
+  // REGEX: permite solo letras, espacios y guiones en ciudades.
   const lettersOnly = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s-]+$/;
 
   if (name === "ciudad_origen" || name === "ciudad_destino") {
@@ -57,6 +64,8 @@ const validateField = (name, value, data, ciudades) => {
   return "";
 };
 
+// Valida todos los campos recorriendo las claves del objeto data.
+// reduce arma un nuevo objeto de errores con la misma forma del formulario.
 const validateForm = (data, ciudades) =>
   Object.keys(data).reduce(
     (acc, key) => ({
@@ -67,13 +76,20 @@ const validateForm = (data, ciudades) =>
   );
 
 const Home = () => {
+  // useNavigate permite redirigir al usuario cuando el formulario es valido.
   const navigate = useNavigate();
+  // Ciudades cargadas desde el JSON local mediante fetch.
   const [ciudades, setCiudades] = useState([]);
+  // Mensaje para mostrar si falla la carga de ciudades.
   const [loadError, setLoadError] = useState("");
+  // formData guarda todos los valores del formulario como input controlado.
   const [formData, setFormData] = useState(initialForm);
+  // errors guarda mensajes de validacion por campo.
   const [errors, setErrors] = useState({});
+  // Muestra solo las primeras 6 ciudades en la seccion planes.
   const featuredCities = useMemo(() => ciudades.slice(0, 6), [ciudades]);
 
+  // Al montar Home, se buscan las ciudades con async/await.
   useEffect(() => {
     const loadCiudades = async () => {
       try {
@@ -87,11 +103,15 @@ const Home = () => {
     loadCiudades();
   }, []);
 
+  // Maneja cambios en cualquier input gracias al atributo name.
   const handleChange = (event) => {
+    // DESESTRUCTURACION DE OBJETOS: obtiene name y value desde event.target.
     const { name, value } = event.target;
+    // Spread operator: copia el formulario anterior y reemplaza solo el campo editado.
     const nextData = { ...formData, [name]: value };
 
     setFormData(nextData);
+    // Valida en tiempo real el campo modificado.
     setErrors((prev) => ({
       ...prev,
       [name]: validateField(name, value, nextData, ciudades),
@@ -114,6 +134,7 @@ const Home = () => {
     }));
   };
 
+  // Valida todo el formulario y navega al destino si no hay errores.
   const handleSubmit = (event) => {
     event.preventDefault();
     const nextErrors = validateForm(formData, ciudades);
@@ -121,9 +142,11 @@ const Home = () => {
 
     if (Object.values(nextErrors).some(Boolean)) return;
 
+    // Busca la ciudad de destino en el JSON usando el nombre normalizado.
     const destination = ciudades.find(
       (city) => normalize(city.cityName) === normalize(formData.ciudad_destino)
     );
+    // TERNARIO: si existe destino, va a su pagina; si no, al buscador.
     navigate(destination ? `/${destination.slug}` : "/buscador");
   };
 
@@ -247,6 +270,7 @@ const Home = () => {
             ["Excelente experiencia 10/10", "Lorenzo Rossi Bossio", "Comentarios-1.jpeg"],
             ["Atención excelente", "Andrés Romanutti", "Comentario3.jpg"],
             ["Gran relación calidad-precio", "Federico Esteban Almada", "Comentario2.jpg"],
+            // DESESTRUCTURACION DE ARRAYS: cada testimonio es [quote, author, image].
           ].map(([quote, author, image]) => (
             <Card className="t-card" key={author}>
               <blockquote className="t-quote">"{quote}"</blockquote>

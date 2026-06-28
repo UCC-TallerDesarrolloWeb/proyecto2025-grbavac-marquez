@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+<!-- Documento HTML principal de la pagina de inicio. -->
 <html lang="es">
   <head>
+    <!-- Codificacion de caracteres del documento. -->
     <meta charset="utf-8" />
+    <!-- Autor del proyecto, requerido por la consigna. -->
     <meta name="author" content="Pablo Marquez Capilla - Darko Grbavac" />
     <meta
       name="description"
@@ -11,16 +14,24 @@
       name="keywords"
       content="viajes, argentina, pasajes, hoteles, resorts, turismo"
     />
+    <!-- viewport permite que el sitio se adapte a pantallas mobile. -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>rutas argentinas — buscador y planes</title>
+    <!-- CSS externo con todos los estilos visuales. -->
     <link rel="stylesheet" href="style.css" />
+    <!-- Favicon de la pestana del navegador. -->
     <link rel="icon" href="favicon-travel.svg" type="image/svg+xml" />
+    <!-- defer carga el JS despues de leer el HTML. -->
     <script src="funciones.js" defer></script>
   </head>
+  <!-- page-home identifica esta pagina para estilos/logica especifica. -->
   <body class="page-home">
+    <!-- Contenedor general: centra y limita el ancho del sitio. -->
     <div id="contenedor">
+      <!-- Cabecera: contiene logo, titulo y menu principal. -->
       <header id="cabecera">
         <div class="cabecera-inner">
+          <!-- Link al inicio con aria-label para accesibilidad. -->
           <a href="index.html" aria-label="Ir al inicio">
             <img
               id="logo"
@@ -28,8 +39,10 @@
               alt="logotipo de rutas argentinas"
             />
           </a>
+          <!-- h1: titulo principal de la pagina. -->
           <h1 id="titulo">Rutas Argentinas</h1>
           <nav id="nav-principal" aria-label="navegación principal">
+            <!-- ul/li: lista de enlaces del menu. -->
             <ul id="menu">
               <li><a href="Buscador.html" title="ir al buscador">Buscar</a></li>
               <li>
@@ -46,20 +59,28 @@
         </div>
       </header>
 
+      <!-- main contiene el contenido principal de la pagina. -->
       <main id="contenido">
+        <!-- Hero: primera seccion visual con imagen grande y buscador. -->
         <section id="hero">
           <div class="hero-inner">
+            <!-- Imagen principal. alt describe la imagen para lectores de pantalla. -->
             <img
               id="hero-img"
               src="imagenes/Perito_Moreno_Glacier.jpg"
               alt="paisaje del glaciar perito moreno en santa cruz, argentina"
             />
 
+            <!-- Buscador superpuesto sobre la imagen. -->
             <div id="buscador">
+              <!-- form agrupa campos que el usuario completa; novalidate permite validar con JS propio. -->
               <form id="form-busqueda" action="#" method="get" novalidate>
+                <!-- fila ordena los campos mediante CSS grid. -->
                 <div class="fila">
                   <div class="campo">
+                    <!-- label se vincula con input usando for/id. -->
                     <label for="origen">origen</label>
+                    <!-- type="text" permite escribir texto; required lo vuelve obligatorio. -->
                     <input
                       type="text"
                       id="origen"
@@ -87,6 +108,7 @@
                 <div class="fila">
                   <div class="campo">
                     <label for="fecha-ida">rango fechas</label>
+                    <!-- type="date" muestra selector de fecha. -->
                     <input
                       type="date"
                       id="fecha-ida"
@@ -102,6 +124,7 @@
                   </div>
                   <div class="campo">
                     <label for="pasajeros">pasajeros</label>
+                    <!-- type="number" permite cargar cantidad numerica con min/max. -->
                     <input
                       type="number"
                       id="pasajeros"
@@ -114,6 +137,7 @@
                     />
                   </div>
                   <div class="campo">
+                    <!-- type="submit" dispara el envio del formulario. -->
                     <button type="submit" id="btn-buscar">buscar</button>
                   </div>
                 </div>
@@ -122,6 +146,7 @@
           </div>
         </section>
 
+        <!-- Seccion de planes: muestra destinos populares como tarjetas. -->
         <section id="planes">
           <div class="planes-inner">
             <h2>planes</h2>
@@ -130,9 +155,12 @@
               populares
             </p>
 
+            <!-- Contenedor de tarjetas. CSS lo convierte en grilla responsive. -->
             <div class="lista-planes">
               <!-- Tucumán -->
+              <!-- article representa una tarjeta independiente de destino. -->
               <article class="card" id="card-tucuman">
+                <!-- El enlace ocupa toda la tarjeta para que sea clickeable completa. -->
                 <a
                   class="card-link"
                   href="Tucuman.html"
@@ -142,6 +170,7 @@
                     src="imagenes/Tucuman_Foto_home.webp"
                     alt="tucumán argentina"
                   />
+                  <!-- Texto descriptivo de la tarjeta. -->
                   <div class="card-texto">
                     <h3>tucumán, argentina</h3>
                     <p>pasajes · hoteles · resorts</p>
@@ -242,19 +271,24 @@
           </div>
         </section>
         <!-- Comentarios -->
+        <!-- Testimonios: comentarios de usuarios. aria-labelledby conecta la seccion con su titulo. -->
         <section id="testimonios" aria-labelledby="tit-testimonios">
           <div class="testimonios-inner">
             <h2 id="tit-testimonios">Comentarios</h2>
             <p class="sub">Mirá qué opina la gente de nosotros</p>
 
             <div class="grid-testimonios">
+              <!-- Cada testimonio es un article porque es contenido independiente. -->
               <article class="t-card">
+                <!-- Elemento decorativo; aria-hidden evita que lo lean lectores de pantalla. -->
                 <div class="t-offset" aria-hidden="true"></div>
 
+                <!-- blockquote representa una cita textual. -->
                 <blockquote class="t-quote">
                   “Excelente experiencia 10/10”
                 </blockquote>
 
+                <!-- aria-label explica las estrellas a tecnologias asistivas. -->
                 <div
                   class="t-stars"
                   aria-label="5 de 5 estrellas"
@@ -395,6 +429,7 @@
         </section>
       </main>
 
+      <!-- footer: pie del sitio con marca, redes y derechos. -->
       <footer id="pie" class="pie-hero">
         <div class="pie-inner">
           <div class="pie-brand">
@@ -410,6 +445,7 @@
           </div>
 
           <!-- Redes sociales -->
+          <!-- Navegacion secundaria para redes sociales. -->
           <nav class="pie-social" aria-label="redes sociales">
             <ul>
               <li>

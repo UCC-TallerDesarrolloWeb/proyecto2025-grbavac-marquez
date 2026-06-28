@@ -3,12 +3,18 @@ import { fetchActividades } from "@api/travelApi";
 import Button from "@components/ui/Button";
 import Card from "@components/ui/Card";
 
+// Pagina de actividades: carga datos, filtra por texto/categoria y renderiza cards.
 const Activities = () => {
+  // Datos leidos desde el JSON mediante la API local.
   const [actividades, setActividades] = useState([]);
+  // Mensaje de error si falla la carga asincronica.
   const [loadError, setLoadError] = useState("");
+  // Texto escrito por el usuario en el buscador.
   const [searchQuery, setSearchQuery] = useState("");
+  // Categoria seleccionada en el select.
   const [category, setCategory] = useState("todas");
 
+  // useEffect se ejecuta al montar la pagina y carga las actividades con async/await.
   useEffect(() => {
     const loadActividades = async () => {
       try {
@@ -22,15 +28,19 @@ const Activities = () => {
     loadActividades();
   }, []);
 
+  // useMemo recalcula la lista filtrada solo cuando cambian los datos o filtros.
   const filteredActivities = useMemo(() => {
+    // Normaliza el texto de busqueda para comparar sin espacios extra ni mayusculas.
     const query = searchQuery.trim().toLowerCase();
 
     return actividades.filter((activity) => {
+      // Coincide si el texto esta en nombre, descripcion o ciudad.
       const matchesText =
         !query ||
         `${activity.nombre} ${activity.descripcion} ${activity.ciudad}`
           .toLowerCase()
           .includes(query);
+      // Coincide si se eligio "todas" o si la categoria es igual.
       const matchesCategory =
         category === "todas" || activity.categoria === category;
 
@@ -38,6 +48,7 @@ const Activities = () => {
     });
   }, [actividades, category, searchQuery]);
 
+  // Limpia los filtros y vuelve al listado completo.
   const handleReset = () => {
     setSearchQuery("");
     setCategory("todas");

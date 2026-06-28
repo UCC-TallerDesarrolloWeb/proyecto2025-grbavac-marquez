@@ -3,19 +3,27 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "@components/ui/Button";
 import Input from "@components/ui/Input";
 
+// REGEX: valida que el email tenga un formato basico correcto.
 const validateEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+// Valida que la clave tenga longitud minima.
 const validatePassword = (value) => value.length >= 6;
 
+// Pagina de registro/login: valida en tiempo real y guarda email en localStorage.
 const Register = () => {
+  // useNavigate permite redirigir al inicio cuando el formulario es valido.
   const navigate = useNavigate();
+  // Estado del formulario controlado.
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  // Errores de validacion por campo.
   const [errors, setErrors] = useState({});
 
+  // Valida ambos campos al enviar.
   const handleSubmit = (event) => {
     event.preventDefault();
+    // TERNARIOS: si la validacion falla, se asigna mensaje; si pasa, string vacio.
     const emailError = !validateEmail(formData.email) ? "Email inválido" : "";
     const passwordError = !validatePassword(formData.password)
       ? "La clave debe tener al menos 6 caracteres"
@@ -25,6 +33,7 @@ const Register = () => {
 
     if (!emailError && !passwordError) {
       try {
+        // Guarda un dato simple en localStorage para cumplir persistencia local.
         localStorage.setItem("raf_user_email", formData.email);
       } catch {
         /* localStorage puede no estar disponible en algunos navegadores */
@@ -33,8 +42,11 @@ const Register = () => {
     }
   };
 
+  // Actualiza el estado y valida el campo editado en tiempo real.
   const handleChange = (event) => {
+    // DESESTRUCTURACION DE OBJETOS: obtiene name y value desde event.target.
     const { name, value } = event.target;
+    // Propiedad computada [name]: actualiza email o password dinamicamente.
     setFormData((prev) => ({ ...prev, [name]: value }));
 
     if (name === "email") {

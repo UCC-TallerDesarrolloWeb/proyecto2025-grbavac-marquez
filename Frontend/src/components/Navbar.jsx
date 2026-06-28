@@ -2,6 +2,8 @@ import { useContext, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import ThemeContext from "@context/themeContextObject";
 
+// Diccionario que relaciona lo escrito en el buscador con la ruta real.
+// Esto evita usar muchos if/else para cada ciudad.
 const cityMap = {
   "buenos aires": "/buenos-aires",
   cordoba: "/cordoba",
@@ -15,6 +17,8 @@ const cityMap = {
   bariloche: "/bariloche",
 };
 
+// Titulos especiales segun la pagina actual.
+// Si la ruta no esta aca, se usa "RUTAS ARGENTINAS".
 const pageTitles = {
   "/buscador": "DESTINOS DISPONIBLES",
   "/contacto": "CANALES DE CONSULTA",
@@ -22,20 +26,30 @@ const pageTitles = {
   "/registrarse": "REGISTRO",
 };
 
+// Navbar muestra logo, titulo dinamico, buscador oculto y enlaces principales.
 const Navbar = () => {
+  // useNavigate permite cambiar de pagina desde codigo JavaScript.
   const navigate = useNavigate();
+  // useLocation informa en que ruta estamos actualmente.
   const location = useLocation();
+  // useContext lee el tema compartido por ThemeProvider.
   const { theme } = useContext(ThemeContext);
+  // q guarda lo que escribe el usuario en el buscador de ciudad.
   const [q, setQ] = useState("");
   const title = pageTitles[location.pathname] || "RUTAS ARGENTINAS";
+  // links es un arreglo de pares [ruta, texto].
+  // Luego se usa desestructuracion de arrays en el map: ([to, label]).
   const links = [
     ["/", "Inicio"],
     ["/buscador", "Buscador"],
     ["/actividades", "Actividades"],
     ["/contacto", "Contacto"],
     ["/registrarse", "Registrarse / Iniciar Sesion"],
+  // DESESTRUCTURACION DE ARRAYS: filter recibe [to] para mirar solo la ruta.
   ].filter(([to]) => to !== location.pathname || to === "/");
 
+  // Maneja el submit del buscador: normaliza el texto y navega a la ciudad
+  // si existe en cityMap; si no, manda al buscador general.
   const onSearch = (e) => {
     e.preventDefault();
     const key = q.trim().toLowerCase();
@@ -69,6 +83,8 @@ const Navbar = () => {
       </form>
 
       <ul data-theme-label={theme}>
+        {/* NavLink agrega la clase active automaticamente cuando coincide la ruta. */}
+        {/* DESESTRUCTURACION DE ARRAYS: cada link es [to, label]. */}
         {links.map(([to, label]) => (
           <li key={to}>
             <NavLink to={to}>{label}</NavLink>

@@ -17,11 +17,16 @@ import Contact from "@pages/Contact";
 import Register from "@pages/Register";
 import NotFound from "@pages/NotFound";
 
+// App define la estructura principal de rutas de la aplicacion.
+// ThemeProvider permite compartir el tema claro/oscuro con todos los componentes.
+// BrowserRouter habilita la navegacion sin recargar la pagina.
 const App = () => (
   <ThemeProvider>
     <Router>
       <Routes>
+        {/* Layout es la ruta padre: muestra Navbar y usa Outlet para renderizar hijas. */}
         <Route path="/" element={<Layout />}>
+          {/* index es la pagina inicial cuando la ruta es exactamente "/". */}
           <Route index element={<Home />} />
           <Route path="buscador" element={<Buscador />} />
           <Route path="buenos-aires" element={<BuenosAires />} />
@@ -35,6 +40,7 @@ const App = () => (
           <Route path="actividades" element={<Activities />} />
           <Route path="contacto" element={<Contact />} />
           <Route path="registrarse" element={<Register />} />
+          {/* El asterisco captura cualquier ruta inexistente y muestra 404. */}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

@@ -1,31 +1,43 @@
 import { useState } from "react";
 import Card from "@components/ui/Card";
 
+// Estado inicial del formulario de contacto.
 const initialForm = {
   email: "",
   tema: "",
   message: "",
 };
 
+// REGEX: expresion regular para validar formato basico de email.
 const validateEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
+// Pagina de contacto: maneja formulario, estimador de espera y datos visibles.
 const Contact = () => {
+  // Datos del formulario de contacto.
   const [formData, setFormData] = useState(initialForm);
+  // Indica si el formulario fue enviado correctamente.
   const [sent, setSent] = useState(false);
+  // Datos seleccionados para calcular espera estimada.
   const [waitData, setWaitData] = useState({ dia: "laboral", franja: "tarde" });
+  // Resultado visible del estimador.
   const [waitResult, setWaitResult] = useState("—");
 
+  // Actualiza el formulario usando el name del campo editado.
   const handleChange = (event) => {
+    // DESESTRUCTURACION DE OBJETOS: obtiene name y value desde event.target.
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     setSent(false);
   };
 
+  // Actualiza los campos del estimador de espera.
   const handleWaitChange = (event) => {
+    // DESESTRUCTURACION DE OBJETOS: obtiene name y value desde event.target.
     const { name, value } = event.target;
     setWaitData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Calcula la espera usando una tabla de valores segun dia y franja.
   const handleEstimate = () => {
     const table = {
       laboral: { maniana: "5 a 8 min", tarde: "10 a 15 min", noche: "8 a 12 min" },
@@ -34,6 +46,7 @@ const Contact = () => {
     setWaitResult(table[waitData.dia][waitData.franja]);
   };
 
+  // Valida el email antes de simular el envio del formulario.
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!validateEmail(formData.email)) return;

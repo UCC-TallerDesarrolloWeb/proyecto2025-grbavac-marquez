@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Button from "@components/ui/Button";
 import Card from "@components/ui/Card";
 
+// Informacion repetida en todas las paginas de ciudad.
+// Se declara una sola vez y luego se recorre con map para evitar duplicar JSX.
 const highlights = [
   {
     icon: "cancelacion-png.webp",
@@ -30,7 +32,10 @@ const highlights = [
   },
 ];
 
+// CityTemplate recibe un objeto city por props y arma la pagina visual.
 const CityTemplate = ({ city }) => {
+  // encodeURIComponent prepara el texto para usarlo dentro de una URL.
+  // Evita problemas con espacios, comas o acentos en Google Maps.
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(
     city.mapQuery
   )}&output=embed`;
@@ -57,6 +62,7 @@ const CityTemplate = ({ city }) => {
           </figure>
 
           <div className="highlights">
+            {/* map transforma cada item del arreglo highlights en una Card. */}
             {highlights.map((item) => (
               <Card className="highlight-card" key={item.title}>
                 <img
@@ -82,6 +88,7 @@ const CityTemplate = ({ city }) => {
           <section className="actividades" aria-labelledby="tit-act">
             <h2 id="tit-act">Actividades</h2>
             <ul className="lista">
+              {/* Recorre las actividades propias de la ciudad recibida por props. */}
               {city.activities.map((activity) => (
                 <li key={activity.name}>
                   <strong>{activity.name}:</strong> {activity.description}
@@ -96,6 +103,7 @@ const CityTemplate = ({ city }) => {
               <div>
                 <h3>Incluye</h3>
                 <ul className="lista">
+                  {/* Incluye viene del JSON de la ciudad. */}
                   {city.includes.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -104,6 +112,7 @@ const CityTemplate = ({ city }) => {
               <div>
                 <h3>No incluye</h3>
                 <ul className="lista">
+                  {/* Excludes contiene los items que no estan incluidos en el paquete. */}
                   {city.excludes.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -156,6 +165,7 @@ const CityTemplate = ({ city }) => {
   );
 };
 
+// PropTypes documenta y valida en desarrollo la forma esperada del objeto city.
 CityTemplate.propTypes = {
   city: PropTypes.shape({
     cityName: PropTypes.string.isRequired,
