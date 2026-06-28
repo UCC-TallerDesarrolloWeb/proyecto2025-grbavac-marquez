@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
-import ThemeContext from "@context/themeContextObject";
 
 // Diccionario que relaciona lo escrito en el buscador con la ruta real.
 // Esto evita usar muchos if/else para cada ciudad.
@@ -32,8 +31,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   // useLocation informa en que ruta estamos actualmente.
   const location = useLocation();
-  // useContext lee el tema compartido por ThemeProvider.
-  const { theme } = useContext(ThemeContext);
   // q guarda lo que escribe el usuario en el buscador de ciudad.
   const [q, setQ] = useState("");
   const title = pageTitles[location.pathname] || "RUTAS ARGENTINAS";
@@ -82,7 +79,7 @@ const Navbar = () => {
         <button type="submit">Ir</button>
       </form>
 
-      <ul data-theme-label={theme}>
+      <ul>
         {/* NavLink agrega la clase active automaticamente cuando coincide la ruta. */}
         {/* DESESTRUCTURACION DE ARRAYS: cada link es [to, label]. */}
         {links.map(([to, label]) => (
