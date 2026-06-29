@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@styles/main.scss";
-import App from "./App.jsx";
+import App from "@/App.jsx";
 
 // Punto de entrada de React: busca el div con id "root" en index.html
 // y renderiza adentro toda la aplicacion.

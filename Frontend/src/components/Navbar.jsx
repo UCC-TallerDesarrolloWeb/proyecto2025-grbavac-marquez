@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
+import travelLogo from "@/assets/travel-asset.svg";
 
 // Diccionario que relaciona lo escrito en el buscador con la ruta real.
 // Esto evita usar muchos if/else para cada ciudad.
@@ -58,7 +59,7 @@ const Navbar = () => {
     <nav className="site-nav" aria-label="navegación principal">
       <Link to="/" className="brand" aria-label="ir al inicio">
         <img
-          src="/imagenes/Logo-Rutas-Argentinas.jpeg.jpg"
+          src={travelLogo}
           alt="logotipo de rutas argentinas"
         />
       </Link>

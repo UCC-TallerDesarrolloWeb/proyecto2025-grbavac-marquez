@@ -1,5 +1,5 @@
-const ciudadesUrl = new URL("../data/ciudades.json", import.meta.url).href;
-const actividadesUrl = new URL("../data/actividades.json", import.meta.url).href;
+import ciudadesUrl from "@data/ciudades.json?url";
+import actividadesUrl from "@data/actividades.json?url";
 
 // Funcion generica para pedir un JSON con fetch.
 // async/await permite escribir codigo asincronico de forma mas legible.
